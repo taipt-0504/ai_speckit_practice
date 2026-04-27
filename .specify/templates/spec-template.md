@@ -90,6 +90,22 @@
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
 
+### Quality Requirements
+
+- **QR-001**: Feature MUST identify the formatting, linting, and static-analysis
+  expectations that apply to changed code.
+- **QR-002**: Feature MUST define any readability, maintainability, or
+  refactoring expectations that are necessary to keep touched code clean.
+
+### Testing Requirements
+
+- **TR-001**: Feature MUST define the automated test types required to verify
+  the behavior.
+- **TR-002**: Feature MUST describe the failing-first evidence expected before
+  implementation begins.
+- **TR-003**: Feature MUST identify regression coverage needed to prevent the
+  behavior from breaking again.
+
 *Example of marking unclear requirements:*
 
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
@@ -113,6 +129,10 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+
+**Constitution Minimums**: Include at least one measurable quality or defect
+prevention outcome and at least one testing outcome that proves the new
+behavior was verified automatically.
 
 ## Assumptions
 

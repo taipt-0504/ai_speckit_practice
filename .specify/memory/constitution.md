@@ -1,50 +1,77 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+Version change: 1.0.0 -> 2.0.0
+Modified principles:
+- I. Code Quality Is a Deliverable -> I. Code Quality Is a Deliverable
+- II. Tests Define Done -> II. Test First Is Mandatory
+Added sections:
+- None
+Removed sections:
+- Core principle III. User Experience Must Stay Consistent
+- Core principle IV. Performance Budgets Are Requirements
+- Core principle V. Simplicity Before Expansion
+Templates requiring updates:
+- ✅ .specify/templates/plan-template.md
+- ✅ .specify/templates/spec-template.md
+- ✅ .specify/templates/tasks-template.md
+Follow-up TODOs:
+- None
+-->
+# AI Project 1 Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Code Quality Is a Deliverable
+All production code MUST be readable, reviewed, and maintainable before it is
+considered complete. Changes MUST pass formatting, linting, and static-analysis
+checks appropriate to the stack, and they MUST leave touched code in a clearer
+state than it was found. Large abstractions, duplicated logic, and dead paths
+MUST be removed or explicitly justified in the implementation plan. The purpose
+is to keep the codebase cheap to evolve rather than merely functional today.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Test First Is Mandatory
+Every behavior change MUST begin by defining automated tests that would fail
+without the implementation. The default sequence is specify behavior, write the
+test, observe failure, implement, and then refactor while keeping the suite
+green. The minimum required mix is the lowest-cost combination that proves the
+behavior at the correct level: unit tests for local logic, integration or
+contract tests for boundaries, and regression tests for defects. Manual checks
+may supplement automation but MUST NOT replace it. Work that cannot yet be
+tested is incomplete and MUST be tracked as an explicit blocker.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+## Engineering Standards
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+- Specs MUST define measurable success criteria, code quality expectations, and
+  the test evidence required to mark the work complete.
+- Plans MUST include a Constitution Check that verifies code quality controls
+  and a failing-first test strategy for the feature.
+- Tasks MUST include the work needed to enforce these principles, including
+  quality-gate setup and automated tests for every behavior change.
+- Reviewers MUST reject changes that omit the validation steps required by the
+  spec or plan.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## Delivery Workflow
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+1. Specify the user outcome, code quality expectations, and test evidence.
+2. Plan the technical approach and document constitution gates before design
+   work is considered ready.
+3. Write or update automated tests before implementation and confirm the new
+   behavior is failing for the right reason.
+4. Implement in small increments, keeping tests and quality checks close to the
+   change.
+5. Mark work complete only after automated tests and required quality gates
+   pass.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution takes precedence over local habits and template defaults.
+Amendments require: (1) a documented proposal, (2) an explanation of the impact
+on existing templates or workflow, and (3) synchronization of affected artifacts
+in the same change. Versioning follows semantic rules for governance: MAJOR for
+breaking principle removals or redefinitions, MINOR for new principles or
+materially expanded obligations, and PATCH for clarifications that do not change
+enforcement. Every review, plan, and task list MUST include a compliance check
+against this constitution, and unresolved violations MUST be tracked explicitly
+before merge.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 2.0.0 | **Ratified**: 2026-04-27 | **Last Amended**: 2026-04-27
