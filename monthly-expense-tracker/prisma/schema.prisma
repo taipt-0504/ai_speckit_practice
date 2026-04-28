@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  password  String
+  role      String     @default("user") // "user" | "admin"
+  status    String     @default("pending") // "pending" | "active" | "rejected"
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  transactions   Transaction[]
+  categories     Category[]
+  spendingLimits SpendingLimit[]
+  sessions       Session[]
+
+  @@map("users")
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  isDefault Boolean  @default(false)
+  ownerId   String?  // null for default categories, user_id for custom categories
+  owner     User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transactions   Transaction[]
+  spendingLimits SpendingLimit[]
+
+  @@unique([name, ownerId])
+  @@map("categories")
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  title     String
+  amount    Int      // INTEGER in base unit (e.g., VND cents), not DECIMAL
+  type      String   // "income" | "expense"
+  date      DateTime
+  notes     String?
+  categoryId String
+  category  Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("transactions")
+}
+
+model SpendingLimit {
+  id         String   @id @default(cuid())
+  limitType  String   // "monthly_total" | "category"
+  amount     Int      // INTEGER in base unit, not DECIMAL
+  month      Int      // 1-12
+  year       Int
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoryId String?  // nullable for monthly total, set for category-specific limits
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("spending_limits")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("sessions")
+}
