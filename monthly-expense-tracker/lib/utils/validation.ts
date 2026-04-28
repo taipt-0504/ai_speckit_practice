@@ -19,12 +19,11 @@ export const LoginSchema = z.object({
 // Transaction schemas
 export const TransactionSchema = z.object({
   title: z.string().min(1, 'Title is required').max(255),
-  amount: z
-    .number()
-    .int('Amount must be an integer')
-    .positive('Amount must be positive'),
+  amount: z.number().int('Amount must be an integer').positive('Amount must be positive'),
   type: z.enum(['income', 'expense']),
-  date: z.coerce.date(),
+  date: z.coerce
+    .date()
+    .refine((value) => value.getTime() <= Date.now(), 'Transaction date cannot be in the future'),
   categoryId: z.string().min(1, 'Category is required'),
   notes: z.string().optional().nullable(),
 });
@@ -33,19 +32,13 @@ export const TransactionUpdateSchema = TransactionSchema.partial();
 
 // Category schemas
 export const CategorySchema = z.object({
-  name: z
-    .string()
-    .min(1, 'Category name is required')
-    .max(100, 'Category name too long'),
+  name: z.string().min(1, 'Category name is required').max(100, 'Category name too long'),
 });
 
 // SpendingLimit schemas
 export const SpendingLimitSchema = z.object({
   limitType: z.enum(['monthly_total', 'category']),
-  amount: z
-    .number()
-    .int('Amount must be an integer')
-    .positive('Amount must be positive'),
+  amount: z.number().int('Amount must be an integer').positive('Amount must be positive'),
   month: z.number().int().min(1).max(12),
   year: z.number().int().min(2000),
   categoryId: z.string().optional().nullable(),
@@ -61,3 +54,20 @@ export type TransactionUpdateInput = z.infer<typeof TransactionUpdateSchema>;
 export type CategoryInput = z.infer<typeof CategorySchema>;
 export type SpendingLimitInput = z.infer<typeof SpendingLimitSchema>;
 export type SpendingLimitUpdateInput = z.infer<typeof SpendingLimitUpdateSchema>;
+
+export function canAccessCategory(
+  isDefault: boolean,
+  ownerId: string | null,
+  userId: string,
+  role: string
+): boolean {
+  if (isDefault) {
+    return true;
+  }
+
+  if (role === 'admin') {
+    return true;
+  }
+
+  return ownerId === userId;
+}

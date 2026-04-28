@@ -80,20 +80,20 @@
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T023 [P] [US2] Add unit tests for transaction validation, category ownership, and amount/date rules in monthly-expense-tracker/__tests__/unit/validation.test.ts
-- [ ] T024 [P] [US2] Add component tests for transaction and category forms in monthly-expense-tracker/__tests__/components/TransactionForm.test.tsx and monthly-expense-tracker/__tests__/components/CategoryForm.test.tsx
-- [ ] T025 [P] [US2] Add integration tests for transaction CRUD, blocked category deletion when transactions exist, and successful deletion only after reassignment in monthly-expense-tracker/__tests__/integration/transaction-crud.test.ts
-- [ ] T026 [US2] Document the failing-first transaction/category workflow in monthly-expense-tracker/README.md
+- [x] T023 [P] [US2] Add unit tests for transaction validation, category ownership, and amount/date rules in monthly-expense-tracker/__tests__/unit/validation.test.ts
+- [x] T024 [P] [US2] Add component tests for transaction and category forms in monthly-expense-tracker/__tests__/components/TransactionForm.test.tsx and monthly-expense-tracker/__tests__/components/CategoryForm.test.tsx
+- [x] T025 [P] [US2] Add integration tests for transaction CRUD, blocked category deletion when transactions exist, and successful deletion only after reassignment in monthly-expense-tracker/__tests__/integration/transaction-crud.test.ts
+- [x] T026 [US2] Document the failing-first transaction/category workflow in monthly-expense-tracker/README.md
 
 ### Implementation for User Story 2
 
-- [ ] T027 [P] [US2] Implement transaction calculation and filtering helpers in monthly-expense-tracker/lib/utils/calculations.ts and monthly-expense-tracker/lib/utils/date.ts
-- [ ] T028 [P] [US2] Implement transaction list/create and detail/update/delete API routes in monthly-expense-tracker/app/api/transactions/route.ts and monthly-expense-tracker/app/api/transactions/[id]/route.ts
-- [ ] T029 [P] [US2] Implement category list/create/rename/delete API routes plus transaction-reassignment action before delete in monthly-expense-tracker/app/api/categories/route.ts and monthly-expense-tracker/app/api/categories/[id]/route.ts
-- [ ] T030 [P] [US2] Build transaction form, list, row, and search/filter UI primitives in monthly-expense-tracker/components/transactions/TransactionForm.tsx, monthly-expense-tracker/components/transactions/TransactionList.tsx, monthly-expense-tracker/components/transactions/TransactionRow.tsx, monthly-expense-tracker/components/transactions/FilterBar.tsx, and monthly-expense-tracker/components/transactions/SearchBox.tsx
-- [ ] T031 [P] [US2] Build category management UI with mandatory reassignment flow before delete in monthly-expense-tracker/components/category/CategoryForm.tsx, monthly-expense-tracker/components/category/CategoryList.tsx, and monthly-expense-tracker/app/(protected)/categories/page.tsx
-- [ ] T032 [US2] Build transaction pages and hooks in monthly-expense-tracker/app/(protected)/transactions/page.tsx, monthly-expense-tracker/app/(protected)/transactions/new/page.tsx, monthly-expense-tracker/app/(protected)/transactions/[id]/page.tsx, monthly-expense-tracker/app/(protected)/transactions/[id]/edit/page.tsx, monthly-expense-tracker/lib/hooks/useTransactions.ts, and monthly-expense-tracker/lib/hooks/useCategories.ts
-- [ ] T033 [US2] Enforce deletion policy: reject category deletion when related transactions exist, require reassignment target, then allow delete; include consistent error handling in monthly-expense-tracker/lib/utils/errors.ts and monthly-expense-tracker/app/api/categories/[id]/route.ts
+- [x] T027 [P] [US2] Implement transaction calculation and filtering helpers in monthly-expense-tracker/lib/utils/calculations.ts and monthly-expense-tracker/lib/utils/date.ts
+- [x] T028 [P] [US2] Implement transaction list/create and detail/update/delete API routes in monthly-expense-tracker/app/api/transactions/route.ts and monthly-expense-tracker/app/api/transactions/[id]/route.ts
+- [x] T029 [P] [US2] Implement category list/create/rename/delete API routes plus transaction-reassignment action before delete in monthly-expense-tracker/app/api/categories/route.ts and monthly-expense-tracker/app/api/categories/[id]/route.ts
+- [x] T030 [P] [US2] Build transaction form, list, row, and search/filter UI primitives in monthly-expense-tracker/components/transactions/TransactionForm.tsx, monthly-expense-tracker/components/transactions/TransactionList.tsx, monthly-expense-tracker/components/transactions/TransactionRow.tsx, monthly-expense-tracker/components/transactions/FilterBar.tsx, and monthly-expense-tracker/components/transactions/SearchBox.tsx
+- [x] T031 [P] [US2] Build category management UI with mandatory reassignment flow before delete in monthly-expense-tracker/components/category/CategoryForm.tsx, monthly-expense-tracker/components/category/CategoryList.tsx, and monthly-expense-tracker/app/(protected)/categories/page.tsx
+- [x] T032 [US2] Build transaction pages and hooks in monthly-expense-tracker/app/(protected)/transactions/page.tsx, monthly-expense-tracker/app/(protected)/transactions/new/page.tsx, monthly-expense-tracker/app/(protected)/transactions/[id]/page.tsx, monthly-expense-tracker/app/(protected)/transactions/[id]/edit/page.tsx, monthly-expense-tracker/lib/hooks/useTransactions.ts, and monthly-expense-tracker/lib/hooks/useCategories.ts
+- [x] T033 [US2] Enforce deletion policy: reject category deletion when related transactions exist, require reassignment target, then allow delete; include consistent error handling in monthly-expense-tracker/lib/utils/errors.ts and monthly-expense-tracker/app/api/categories/[id]/route.ts
 
 **Checkpoint**: User Stories 1 and 2 should work independently, with users managing their own financial records.
 
