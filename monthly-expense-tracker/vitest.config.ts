@@ -11,12 +11,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        '__tests__/setup.ts',
-        '**/*.d.ts',
-        '**/index.ts',
-      ],
+      exclude: ['node_modules/', '__tests__/setup.ts', '**/*.d.ts', '**/index.ts'],
     },
   },
   resolve: {

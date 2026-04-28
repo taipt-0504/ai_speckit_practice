@@ -29,9 +29,7 @@ export default function MonthlyOverview({
       </div>
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
         <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Số dư</p>
-        <p
-          className={`mt-1 text-xl font-bold ${balance >= 0 ? 'text-blue-600' : 'text-red-600'}`}
-        >
+        <p className={`mt-1 text-xl font-bold ${balance >= 0 ? 'text-blue-600' : 'text-red-600'}`}>
           {formatCurrency(balance)}
         </p>
       </div>

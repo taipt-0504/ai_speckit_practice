@@ -8,7 +8,7 @@ import {
 import type { Transaction } from '@/types/forms';
 
 function makeTransaction(
-  overrides: Partial<Transaction & { category?: { id: string; name: string } }>,
+  overrides: Partial<Transaction & { category?: { id: string; name: string } }>
 ): Transaction & { category?: { id: string; name: string } } {
   return {
     id: 'tx1',

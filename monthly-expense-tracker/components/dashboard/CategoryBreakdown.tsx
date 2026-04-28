@@ -45,14 +45,20 @@ export default function CategoryBreakdown({ data }: CategoryBreakdownProps) {
             cy="50%"
             outerRadius={80}
             dataKey="value"
-            label={(props: PieLabelRenderProps) => `${String(props.name ?? '')} ${String(props.percent !== undefined ? Math.round(props.percent * 100) : 0)}%`}
+            label={(props: PieLabelRenderProps) =>
+              `${String(props.name ?? '')} ${String(props.percent !== undefined ? Math.round(props.percent * 100) : 0)}%`
+            }
             labelLine={false}
           >
             {pieData.map((_entry, index) => (
               <Cell key={index} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip formatter={(value) => (typeof value === 'number' ? value.toLocaleString('vi-VN') : String(value))} />
+          <Tooltip
+            formatter={(value) =>
+              typeof value === 'number' ? value.toLocaleString('vi-VN') : String(value)
+            }
+          />
           <Legend />
         </PieChart>
       </ResponsiveContainer>

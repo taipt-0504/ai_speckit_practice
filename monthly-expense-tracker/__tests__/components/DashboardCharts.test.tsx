@@ -31,14 +31,7 @@ describe('MonthlyOverview', () => {
   });
 
   it('renders empty state when no transactions', () => {
-    render(
-      <MonthlyOverview
-        totalIncome={0}
-        totalExpense={0}
-        balance={0}
-        transactionCount={0}
-      />,
-    );
+    render(<MonthlyOverview totalIncome={0} totalExpense={0} balance={0} transactionCount={0} />);
     // All four summary values render (all zero in this case)
     const zeros = screen.getAllByText('0');
     expect(zeros.length).toBeGreaterThanOrEqual(1);

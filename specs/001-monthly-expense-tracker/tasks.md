@@ -131,16 +131,16 @@
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T042 [P] [US4] Add unit tests for filter parsing and CSV serialization helpers in monthly-expense-tracker/__tests__/unit/date.test.ts and monthly-expense-tracker/__tests__/unit/csv.test.ts
-- [ ] T043 [P] [US4] Add integration tests for combined filters, search behavior, and CSV export in monthly-expense-tracker/__tests__/integration/filter-export.test.ts
-- [ ] T044 [US4] Document the failing-first filter/export workflow in monthly-expense-tracker/README.md
+- [x] T042 [P] [US4] Add unit tests for filter parsing and CSV serialization helpers in monthly-expense-tracker/__tests__/unit/date.test.ts and monthly-expense-tracker/__tests__/unit/csv.test.ts
+- [x] T043 [P] [US4] Add integration tests for combined filters, search behavior, and CSV export in monthly-expense-tracker/__tests__/integration/filter-export.test.ts
+- [x] T044 [US4] Document the failing-first filter/export workflow in monthly-expense-tracker/README.md
 
 ### Implementation for User Story 4
 
-- [ ] T045 [P] [US4] Implement CSV generation helpers in monthly-expense-tracker/lib/utils/csv.ts
-- [ ] T046 [P] [US4] Implement the filtered CSV export route in monthly-expense-tracker/app/api/transactions/export-csv/route.ts
-- [ ] T047 [P] [US4] Extend transaction query/filter behavior in monthly-expense-tracker/app/api/transactions/route.ts and monthly-expense-tracker/lib/hooks/useTransactions.ts
-- [ ] T048 [US4] Wire filter, search, and export interactions into the transaction list UI in monthly-expense-tracker/app/(protected)/transactions/page.tsx and monthly-expense-tracker/components/transactions/FilterBar.tsx
+- [x] T045 [P] [US4] Implement CSV generation helpers in monthly-expense-tracker/lib/utils/csv.ts
+- [x] T046 [P] [US4] Implement the filtered CSV export route in monthly-expense-tracker/app/api/transactions/export-csv/route.ts
+- [x] T047 [P] [US4] Extend transaction query/filter behavior in monthly-expense-tracker/app/api/transactions/route.ts and monthly-expense-tracker/lib/hooks/useTransactions.ts
+- [x] T048 [US4] Wire filter, search, and export interactions into the transaction list UI in monthly-expense-tracker/app/(protected)/transactions/page.tsx and monthly-expense-tracker/components/transactions/FilterBar.tsx
 
 **Checkpoint**: Users can narrow transaction data quickly and export the current results without affecting earlier stories.
 

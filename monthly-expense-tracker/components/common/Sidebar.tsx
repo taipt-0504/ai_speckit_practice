@@ -10,10 +10,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     <>
       {/* Mobile sidebar overlay */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 md:hidden"
-          onClick={onClose}
-        />
+        <div className="fixed inset-0 bg-black bg-opacity-50 md:hidden" onClick={onClose} />
       )}
 
       {/* Sidebar */}
@@ -23,15 +20,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         }`}
       >
         <div className="p-4">
-          <button
-            onClick={onClose}
-            className="md:hidden mb-4 text-gray-600 hover:text-gray-900"
-          >
+          <button onClick={onClose} className="md:hidden mb-4 text-gray-600 hover:text-gray-900">
             ✕
           </button>
-          <nav className="space-y-2">
-            {/* Sidebar navigation items can be added here */}
-          </nav>
+          <nav className="space-y-2">{/* Sidebar navigation items can be added here */}</nav>
         </div>
       </aside>
     </>

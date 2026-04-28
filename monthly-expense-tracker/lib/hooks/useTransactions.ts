@@ -130,6 +130,35 @@ export function useTransactions(initialFilters: TransactionFilters = {}) {
     return data as TransactionItem;
   }, []);
 
+  const exportCsv = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `/api/transactions/export-csv${queryString ? `?${queryString}` : ''}`,
+        {
+          credentials: 'include',
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to export CSV');
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download =
+        response.headers.get('content-disposition')?.split('filename="')[1]?.split('"')[0] ??
+        `transactions-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(url);
+      a.remove();
+    } catch (err) {
+      throw new Error(err instanceof Error ? err.message : 'Failed to export CSV');
+    }
+  }, [queryString]);
+
   return {
     transactions,
     total,
@@ -141,5 +170,6 @@ export function useTransactions(initialFilters: TransactionFilters = {}) {
     saveTransaction,
     deleteTransaction,
     getTransactionById,
+    exportCsv,
   };
 }

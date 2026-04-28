@@ -7,11 +7,7 @@ export interface SessionData {
   status: string;
 }
 
-export async function createSession(
-  userId: string,
-  token: string,
-  expiresAt: Date
-): Promise<any> {
+export async function createSession(userId: string, token: string, expiresAt: Date): Promise<any> {
   return prisma.session.create({
     data: {
       userId,

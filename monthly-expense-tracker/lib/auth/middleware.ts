@@ -13,9 +13,7 @@ export interface AuthRequest extends NextRequest {
 }
 
 // Middleware to validate JWT token
-export function withAuth(
-  handler: (req: AuthRequest) => Promise<NextResponse>
-) {
+export function withAuth(handler: (req: AuthRequest) => Promise<NextResponse>) {
   return async (request: NextRequest) => {
     const token = request.cookies.get('auth_token')?.value;
 
@@ -59,9 +57,7 @@ export function withAuth(
 }
 
 // Middleware to require admin role
-export function withAdminAuth(
-  handler: (req: AuthRequest) => Promise<NextResponse>
-) {
+export function withAdminAuth(handler: (req: AuthRequest) => Promise<NextResponse>) {
   return withAuth(async (request: AuthRequest) => {
     if (request.user?.role !== 'admin') {
       return NextResponse.json(
@@ -75,9 +71,7 @@ export function withAdminAuth(
 }
 
 // Middleware to require active status
-export function withActiveUserAuth(
-  handler: (req: AuthRequest) => Promise<NextResponse>
-) {
+export function withActiveUserAuth(handler: (req: AuthRequest) => Promise<NextResponse>) {
   return withAuth(async (request: AuthRequest) => {
     const user = await prisma.user.findUnique({
       where: { id: request.user?.id },

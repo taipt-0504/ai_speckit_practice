@@ -16,7 +16,10 @@ export async function GET(request: NextRequest) {
 
       // Validate month format
       if (month && !/^\d{4}-\d{2}$/.test(month)) {
-        return NextResponse.json({ error: 'Invalid month format. Expected YYYY-MM' }, { status: 400 });
+        return NextResponse.json(
+          { error: 'Invalid month format. Expected YYYY-MM' },
+          { status: 400 }
+        );
       }
 
       const monthRange = parseMonthRange(month);
@@ -48,7 +51,7 @@ export async function GET(request: NextRequest) {
 
       // Category breakdown (expenses only)
       const categoryBreakdown = calculateCategoryBreakdown(
-        transactions as Parameters<typeof calculateCategoryBreakdown>[0],
+        transactions as Parameters<typeof calculateCategoryBreakdown>[0]
       ).map((item) => ({
         category_id: item.categoryId,
         category_name: item.categoryName,
@@ -93,11 +96,9 @@ export async function GET(request: NextRequest) {
             spent_amount: spentAmount,
             percentage,
             status,
-            category: limit.category
-              ? { id: limit.category.id, name: limit.category.name }
-              : null,
+            category: limit.category ? { id: limit.category.id, name: limit.category.name } : null,
           };
-        }),
+        })
       );
 
       // Monthly trend: last 3 months including current
@@ -126,7 +127,7 @@ export async function GET(request: NextRequest) {
           const expense = result.find((r) => r.type === 'expense')?._sum.amount ?? 0;
 
           return { month: label, income, expense };
-        }),
+        })
       );
 
       return NextResponse.json({

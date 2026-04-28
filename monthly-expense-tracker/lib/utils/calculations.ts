@@ -22,7 +22,7 @@ export interface CategoryBreakdownItem {
 }
 
 export function calculateCategoryBreakdown(
-  transactions: (Transaction & { category?: { id: string; name: string } })[],
+  transactions: (Transaction & { category?: { id: string; name: string } })[]
 ): CategoryBreakdownItem[] {
   const expenses = transactions.filter((t) => t.type === 'expense');
   const totalExpense = expenses.reduce((sum, t) => sum + t.amount, 0);
@@ -53,7 +53,7 @@ export type LimitStatus = 'normal' | 'warning' | 'exceeded';
 
 export function calculateSpendingLimitStatus(
   spent: number,
-  limit: number,
+  limit: number
 ): { percentage: number; status: LimitStatus } {
   if (limit <= 0) return { percentage: 0, status: 'normal' };
   const percentage = Math.round((spent / limit) * 100);

@@ -44,7 +44,11 @@ export default function IncomeExpenseChart({ data }: IncomeExpenseChartProps) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" tick={{ fontSize: 12 }} />
           <YAxis tickFormatter={formatAmount} tick={{ fontSize: 12 }} />
-          <Tooltip formatter={(value) => (typeof value === 'number' ? value.toLocaleString('vi-VN') : String(value))} />
+          <Tooltip
+            formatter={(value) =>
+              typeof value === 'number' ? value.toLocaleString('vi-VN') : String(value)
+            }
+          />
           <Legend />
           <Bar dataKey="income" name="Thu nhập" fill="#22c55e" radius={[4, 4, 0, 0]} />
           <Bar dataKey="expense" name="Chi tiêu" fill="#ef4444" radius={[4, 4, 0, 0]} />

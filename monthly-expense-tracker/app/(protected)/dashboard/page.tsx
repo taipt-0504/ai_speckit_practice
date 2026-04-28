@@ -17,8 +17,8 @@ function LimitAlert({ limit }: { limit: SpendingLimitEntry }) {
   return (
     <div className={`rounded-lg border px-4 py-3 text-sm ${colorClass}`}>
       <span className="font-semibold">{label}</span>: đã chi{' '}
-      {limit.spent_amount.toLocaleString('vi-VN')} / {limit.limit_amount.toLocaleString('vi-VN')}{' '}
-      ({limit.percentage}%){' '}
+      {limit.spent_amount.toLocaleString('vi-VN')} / {limit.limit_amount.toLocaleString('vi-VN')} (
+      {limit.percentage}%){' '}
       <span className="font-medium">
         {limit.status === 'exceeded' ? '— Vượt hạn mức!' : '— Gần đến hạn mức'}
       </span>
@@ -30,7 +30,7 @@ export default function DashboardPage() {
   const { data, loading, error, month, setMonth } = useDashboard();
 
   const alertLimits = data?.spending_limits.filter(
-    (l) => l.status === 'warning' || l.status === 'exceeded',
+    (l) => l.status === 'warning' || l.status === 'exceeded'
   );
 
   return (

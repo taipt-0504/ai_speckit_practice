@@ -13,11 +13,7 @@ const alertStyles = {
   info: 'bg-blue-50 border-l-4 border-blue-400 p-4 text-blue-700',
 };
 
-export function AlertBanner({
-  variant,
-  message,
-  onClose,
-}: AlertBannerProps) {
+export function AlertBanner({ variant, message, onClose }: AlertBannerProps) {
   return (
     <div className={alertStyles[variant]} role="alert">
       <div className="flex items-center justify-between">

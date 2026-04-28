@@ -33,7 +33,7 @@ describe('Dashboard API integration', () => {
         const url = new URL(request.url);
         const month = url.searchParams.get('month');
         return HttpResponse.json(makeDashboardResponse({ month: month ?? '2026-04' }));
-      }),
+      })
     );
   });
 
@@ -64,11 +64,11 @@ describe('Dashboard API integration', () => {
                 balance: 5800000,
                 transaction_count: 20,
               },
-            }),
+            })
           );
         }
         return HttpResponse.json(makeDashboardResponse());
-      }),
+      })
     );
 
     const res = await fetch(`${BASE_URL}/api/dashboard?month=2026-03`);
@@ -110,9 +110,9 @@ describe('Dashboard API integration', () => {
             },
             category_breakdown: [],
             monthly_trend: [],
-          }),
+          })
         );
-      }),
+      })
     );
 
     const res = await fetch(`${BASE_URL}/api/dashboard`);
@@ -126,7 +126,7 @@ describe('Dashboard API integration', () => {
     server.use(
       http.get(`${BASE_URL}/api/dashboard`, () => {
         return HttpResponse.json({ error: 'Unauthorized' }, { status: 401 });
-      }),
+      })
     );
 
     const res = await fetch(`${BASE_URL}/api/dashboard`);

@@ -62,3 +62,23 @@ Run US3 focused tests:
 npx vitest __tests__/unit/calculations.test.ts __tests__/components/DashboardCharts.test.tsx __tests__/components/CategoryBreakdown.test.tsx __tests__/integration/dashboard.test.ts --run
 ```
 
+## Phase 6 (US4) Failing-First Filter & CSV Export Flow
+
+US4 completes the filtering and export workflow with tests first:
+
+1. Unit tests verify CSV formatting (`formatCsvValue`) and transaction serialization (`serializeTransactionsToCsv`).
+2. Integration tests verify combined filters, search behavior, and CSV export with multiple filter combinations.
+3. API route `/api/transactions/export-csv` accepts all transaction filters and returns CSV attachment.
+
+Filter/export features:
+- Advanced filters: month, type, date range, category, search
+- Export button on transactions list (disabled when no results)
+- CSV includes: Date, Title, Type, Amount, Category, Notes
+- CSV properly escapes special characters and multiline text
+
+Run US4 focused tests:
+
+```bash
+npx vitest __tests__/unit/csv.test.ts __tests__/integration/filter-export.test.ts --run
+```
+
