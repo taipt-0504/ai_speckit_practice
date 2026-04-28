@@ -17,11 +17,12 @@
 
 **Purpose**: Initialize the Next.js 16 + TypeScript + Tailwind workspace and baseline quality tooling.
 
-- [ ] T001 Initialize the Next.js 16 app workspace and scripts in monthly-expense-tracker/package.json
-- [ ] T002 Configure TypeScript, Next.js, and environment templates in monthly-expense-tracker/tsconfig.json, monthly-expense-tracker/next.config.js, and monthly-expense-tracker/.env.example
-- [ ] T003 [P] Configure Tailwind, PostCSS, and global styles in monthly-expense-tracker/tailwind.config.ts, monthly-expense-tracker/postcss.config.js, and monthly-expense-tracker/styles/globals.css
-- [ ] T004 [P] Configure ESLint, Prettier, and Tailwind lint rules in monthly-expense-tracker/eslint.config.mjs and monthly-expense-tracker/.prettierrc.json
-- [ ] T005 [P] Configure Vitest, Testing Library, and MSW test bootstrap in monthly-expense-tracker/vitest.config.ts and monthly-expense-tracker/__tests__/setup.ts
+- [x] T001 Initialize the Next.js 16 app workspace and scripts in monthly-expense-tracker/package.json
+- [x] T002 Configure TypeScript, Next.js, and environment templates in monthly-expense-tracker/tsconfig.json, monthly-expense-tracker/next.config.js, and monthly-expense-tracker/.env.example
+- [x] T003 [P] Configure Tailwind, PostCSS, and global styles in monthly-expense-tracker/tailwind.config.ts, monthly-expense-tracker/postcss.config.js, and monthly-expense-tracker/styles/globals.css
+- [x] T004 [P] Configure ESLint, Prettier, and Tailwind lint rules in monthly-expense-tracker/eslint.config.mjs and monthly-expense-tracker/.prettierrc.json
+- [x] T005 [P] Configure Vitest, Testing Library, and MSW test bootstrap in monthly-expense-tracker/vitest.config.ts and monthly-expense-tracker/__tests__/setup.ts
+- [x] T005A [P] Add Docker-based development/runtime setup in monthly-expense-tracker/Dockerfile, monthly-expense-tracker/docker-compose.yml, monthly-expense-tracker/.dockerignore, and monthly-expense-tracker/.nvmrc
 
 ---
 
@@ -31,14 +32,14 @@
 
 **⚠️ CRITICAL**: No user story work should begin until this phase is complete.
 
-- [ ] T006 Create the Prisma schema for User, Category, Transaction, SpendingLimit, and Session in monthly-expense-tracker/prisma/schema.prisma
-- [ ] T007 Generate the initial SQLite migration and migration config in monthly-expense-tracker/prisma/migrations/ and monthly-expense-tracker/prisma/migration_lock.toml
-- [ ] T008 [P] Seed the admin account and default categories in monthly-expense-tracker/prisma/seed.ts
-- [ ] T009 [P] Create the shared Prisma client and database bootstrap in monthly-expense-tracker/lib/db/prisma.ts and monthly-expense-tracker/lib/db/index.ts
-- [ ] T010 [P] Implement shared Zod validation schemas and domain types in monthly-expense-tracker/lib/utils/validation.ts and monthly-expense-tracker/types/forms.ts
-- [ ] T011 [P] Implement JWT, password hashing, auth constants, and session helpers in monthly-expense-tracker/lib/auth/hash.ts, monthly-expense-tracker/lib/auth/jwt.ts, monthly-expense-tracker/lib/auth/constants.ts, and monthly-expense-tracker/lib/auth/session.ts
-- [ ] T012 Implement auth and role guards for API routes and protected pages in monthly-expense-tracker/lib/auth/middleware.ts and monthly-expense-tracker/app/(protected)/layout.tsx
-- [ ] T013 [P] Build the shared application shell and notification primitives in monthly-expense-tracker/app/layout.tsx, monthly-expense-tracker/components/common/Header.tsx, monthly-expense-tracker/components/common/Sidebar.tsx, monthly-expense-tracker/components/common/Navigation.tsx, monthly-expense-tracker/components/common/AlertBanner.tsx, and monthly-expense-tracker/components/common/Loading.tsx
+- [x] T006 Create the Prisma schema for User, Category, Transaction, SpendingLimit, and Session in monthly-expense-tracker/prisma/schema.prisma
+- [x] T007 Generate the initial SQLite migration and migration config in monthly-expense-tracker/prisma/migrations/ and monthly-expense-tracker/prisma/migration_lock.toml
+- [x] T008 [P] Seed the admin account and default categories in monthly-expense-tracker/prisma/seed.ts
+- [x] T009 [P] Create the shared Prisma client and database bootstrap in monthly-expense-tracker/lib/db/prisma.ts and monthly-expense-tracker/lib/db/index.ts
+- [x] T010 [P] Implement shared Zod validation schemas and domain types in monthly-expense-tracker/lib/utils/validation.ts and monthly-expense-tracker/types/forms.ts
+- [x] T011 [P] Implement JWT, password hashing, auth constants, and session helpers in monthly-expense-tracker/lib/auth/hash.ts, monthly-expense-tracker/lib/auth/jwt.ts, monthly-expense-tracker/lib/auth/constants.ts, and monthly-expense-tracker/lib/auth/session.ts
+- [x] T012 Implement auth and role guards for API routes and protected pages in monthly-expense-tracker/lib/auth/middleware.ts and monthly-expense-tracker/app/(protected)/layout.tsx
+- [x] T013 [P] Build the shared application shell and notification primitives in monthly-expense-tracker/app/layout.tsx, monthly-expense-tracker/components/common/Header.tsx, monthly-expense-tracker/components/common/Sidebar.tsx, monthly-expense-tracker/components/common/Navigation.tsx, monthly-expense-tracker/components/common/AlertBanner.tsx, and monthly-expense-tracker/components/common/Loading.tsx
 
 **Checkpoint**: Foundation ready. User story work can now proceed in priority order or in parallel where dependencies allow.
 

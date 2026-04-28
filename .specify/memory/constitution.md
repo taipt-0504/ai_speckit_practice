@@ -39,14 +39,25 @@ contract tests for boundaries, and regression tests for defects. Manual checks
 may supplement automation but MUST NOT replace it. Work that cannot yet be
 tested is incomplete and MUST be tracked as an explicit blocker.
 
+### III. Dockerized Implementation for Environment Parity
+Implementation workflows MUST provide a Docker-based path for development and
+execution so contributors can run the same stack across operating systems with
+minimal host-specific drift. Features that add or change runtime dependencies
+MUST update Docker configuration and documentation in the same change. Teams
+MUST verify core flows through the containerized path before marking work done.
+
 ## Engineering Standards
 
 - Specs MUST define measurable success criteria, code quality expectations, and
   the test evidence required to mark the work complete.
 - Plans MUST include a Constitution Check that verifies code quality controls
   and a failing-first test strategy for the feature.
+- Plans MUST define how the feature is executed and validated through Docker,
+  including required services and environment variables.
 - Tasks MUST include the work needed to enforce these principles, including
   quality-gate setup and automated tests for every behavior change.
+- Tasks touching runtime or infrastructure MUST include Docker-related updates
+  where needed to preserve cross-environment reproducibility.
 - Reviewers MUST reject changes that omit the validation steps required by the
   spec or plan.
 
@@ -57,9 +68,9 @@ tested is incomplete and MUST be tracked as an explicit blocker.
    work is considered ready.
 3. Write or update automated tests before implementation and confirm the new
    behavior is failing for the right reason.
-4. Implement in small increments, keeping tests and quality checks close to the
-   change.
-5. Mark work complete only after automated tests and required quality gates
+4. Implement in small increments, keeping tests, Docker parity, and quality
+  checks close to the change.
+5. Mark work complete only after automated tests, Docker validation, and required quality gates
    pass.
 
 ## Governance
@@ -74,4 +85,4 @@ enforcement. Every review, plan, and task list MUST include a compliance check
 against this constitution, and unresolved violations MUST be tracked explicitly
 before merge.
 
-**Version**: 2.0.0 | **Ratified**: 2026-04-27 | **Last Amended**: 2026-04-27
+**Version**: 2.1.0 | **Ratified**: 2026-04-27 | **Last Amended**: 2026-04-28

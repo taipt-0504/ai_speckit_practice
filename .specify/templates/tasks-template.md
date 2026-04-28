@@ -55,6 +55,7 @@ behavior described in the specification.
 - [ ] T003 [P] Configure linting and formatting tools
 - [ ] T004 [P] Establish automated test tooling and baseline quality gates
 - [ ] T005 [P] Document failing-first test workflow and quality-gate execution
+- [ ] T006 [P] Add/update Docker-based development/runtime setup (Dockerfile/compose and env mapping)
 
 ---
 
@@ -66,12 +67,12 @@ behavior described in the specification.
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T006 Setup database schema and migrations framework
-- [ ] T007 [P] Implement authentication/authorization framework
-- [ ] T008 [P] Setup API routing and middleware structure
-- [ ] T009 Create base models/entities that all stories depend on
-- [ ] T010 Configure error handling and logging infrastructure
-- [ ] T011 Setup environment configuration management
+- [ ] T007 Setup database schema and migrations framework
+- [ ] T008 [P] Implement authentication/authorization framework
+- [ ] T009 [P] Setup API routing and middleware structure
+- [ ] T010 Create base models/entities that all stories depend on
+- [ ] T011 Configure error handling and logging infrastructure
+- [ ] T012 Setup environment configuration management
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

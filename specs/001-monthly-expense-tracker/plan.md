@@ -15,7 +15,7 @@ for unit/integration tests.
 
 ## Technical Context
 
-**Language/Version**: TypeScript 5.0+, Node.js 18+, React 19-compatible via Next.js 16 App Router
+**Language/Version**: TypeScript 5.0+, Node.js 20.9.0+, React 19-compatible via Next.js 16 App Router
 **Primary Dependencies**: Next.js 16.x (App Router), Tailwind CSS 3+, shadcn/ui for components, Prisma ORM for SQLite, Vitest
 **Storage**: SQLite (file-based, schema managed via Prisma migrations)
 **Testing**: Vitest for unit tests, Testing Library for React component tests, MSW for API mocking
@@ -34,6 +34,8 @@ for unit/integration tests.
   integration tests for full user journeys (auth flow, transaction CRUD, dashboard data loading).
   Every API route and component receives a failing-first test; regression suite covers auth state,
   transaction calculations, and limit alert logic.
+- **Docker Environment Parity**: Implementation MUST provide and validate a Docker-based development/runtime path
+  (including app and required services) so onboarding and execution remain consistent across host environments.
 
 ## Project Structure
 

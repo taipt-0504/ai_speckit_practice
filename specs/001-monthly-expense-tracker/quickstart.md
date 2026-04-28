@@ -5,8 +5,9 @@
 
 ## Prerequisites
 
-- Node.js 18+ (use `nvm` or similar if needed)
+- Node.js 20.9.0+ (use `nvm` or similar if needed)
 - npm or yarn
+- Docker Engine + Docker Compose plugin (recommended for cross-environment setup)
 - SQLite3 (usually bundled with Node or available via package manager)
 - Git (for version control)
 
@@ -15,7 +16,18 @@
 - App Router enabled
 - React version managed by Next.js 16 App Router compatibility
 
+Quick runtime verification:
+
+```bash
+node -v   # must be >= 20.9.0
+npm -v
+```
+
 ## Phase 1: Project Setup (5 mins)
+
+Choose one setup path:
+- Local Node.js path: use your host Node.js 20.9.0+
+- Docker path: use containers for runtime and commands to avoid host-environment drift
 
 ### 1. Initialize Next.js Project
 
@@ -43,6 +55,12 @@ If `@latest` ever stops resolving to the 16.x stable line in the future, pin the
 npm install next@^16 react react-dom
 ```
 
+If local Node is below 20.9.0, switch runtime before continuing:
+
+```bash
+nvm use 20.9.0 || nvm install 20.9.0
+```
+
 ### 2. Install Core Dependencies
 
 ```bash
@@ -68,6 +86,28 @@ npm install --save-dev \
   @types/jsonwebtoken \
   typescript-eslint
 ```
+
+### 4. Run the Project with Docker (Recommended for Cross-Environment Parity)
+
+Use Docker when you want identical runtime behavior across developer machines:
+
+```bash
+cd monthly-expense-tracker
+cp .env.example .env.local
+docker compose up --build
+```
+
+App is available at `http://localhost:3000`.
+
+For one-off commands in container:
+
+```bash
+docker compose run --rm app npm run db:migrate
+docker compose run --rm app npm run db:seed
+docker compose run --rm app npm run test
+```
+
+If you are not using Docker, continue the remaining steps below on your local machine.
 
 ## Phase 2: Database Setup (10 mins)
 

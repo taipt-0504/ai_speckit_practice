@@ -36,6 +36,9 @@
 - **Test First**: Define the automated test layers required for this feature,
   the failing-first evidence that will be captured before implementation, and
   the regression coverage that will remain after delivery.
+- **Docker Environment Parity**: Define how implementation is run and validated
+  through Docker (application/services, env vars, and verification flow) to
+  ensure cross-environment reproducibility.
 
 ## Project Structure
 

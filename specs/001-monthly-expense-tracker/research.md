@@ -54,7 +54,7 @@
 - Testing Library encourages testing user behavior, not implementation
 - MSW intercepts API calls for integration tests without running real server
 
-**Deployment & Runtime**: Node.js 18+ (LTS) — widely available, good TypeScript support
+**Deployment & Runtime**: Node.js 20.9.0+ (required by Next.js 16) — use active LTS line for stable toolchain behavior
 
 ## Database Schema Design
 
