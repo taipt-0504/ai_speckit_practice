@@ -33,7 +33,7 @@
 **⚠️ CRITICAL**: No user story work should begin until this phase is complete.
 
 - [x] T006 Create the Prisma schema for User, Category, Transaction, SpendingLimit, and Session in monthly-expense-tracker/prisma/schema.prisma
-- [x] T007 Generate the initial SQLite migration and migration config in monthly-expense-tracker/prisma/migrations/ and monthly-expense-tracker/prisma/migration_lock.toml
+- [x] T007 Generate the initial SQLite migration and migration config in monthly-expense-tracker/prisma/migrations/ and monthly-expense-tracker/prisma/migrations/migration_lock.toml
 - [x] T008 [P] Seed the admin account and default categories in monthly-expense-tracker/prisma/seed.ts
 - [x] T009 [P] Create the shared Prisma client and database bootstrap in monthly-expense-tracker/lib/db/prisma.ts and monthly-expense-tracker/lib/db/index.ts
 - [x] T010 [P] Implement shared Zod validation schemas and domain types in monthly-expense-tracker/lib/utils/validation.ts and monthly-expense-tracker/types/forms.ts
