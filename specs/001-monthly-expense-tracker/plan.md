@@ -73,9 +73,9 @@ monthly-expense-tracker/
 │   │   │       └── reject/route.ts
 │   │   ├── transactions/
 │   │   │   ├── route.ts         # GET (list, filter), POST (create)
+│   │   │   ├── export-csv/route.ts # Export filtered transaction set
 │   │   │   └── [id]/
-│   │   │       ├── route.ts     # GET (detail), PUT (update), DELETE
-│   │   │       └── export-csv/route.ts
+│   │   │       └── route.ts     # GET (detail), PUT (update), DELETE
 │   │   ├── categories/
 │   │   │   ├── route.ts         # GET default, POST create custom
 │   │   │   └── [id]/route.ts    # PUT (rename), DELETE

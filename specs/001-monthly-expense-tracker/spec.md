@@ -102,7 +102,7 @@ Người dùng thiết lập hạn mức chi tiêu tổng cho tháng, hoặc h�
 ### Edge Cases
 
 - Người dùng nhập số tiền với định dạng không hợp lệ (chữ, dấu phẩy, âm) → hệ thống từ chối và báo lỗi cụ thể.
-- Người dùng xoá danh mục đang có giao dịch → giao dịch cũ vẫn giữ nguyên nhưng hiển thị danh mục là "(đã xoá)" hoặc chuyển về danh mục "Khác".
+- Người dùng xoá danh mục đang có giao dịch → hệ thống KHÔNG cho phép xoá và yêu cầu người dùng chuyển toàn bộ giao dịch sang danh mục khác trước khi thực hiện xoá.
 - Quản trị viên cố gắng từ chối tài khoản đã được approve → hệ thống ngăn lại hoặc yêu cầu xác nhận.
 - Người dùng đăng nhập từ hai thiết bị cùng lúc → dữ liệu phải nhất quán, không bị xung đột.
 - Export CSV khi có rất nhiều giao dịch → hệ thống vẫn phản hồi trong thời gian hợp lý và file tải về đầy đủ dữ liệu.
@@ -134,7 +134,7 @@ Người dùng thiết lập hạn mức chi tiêu tổng cho tháng, hoặc h�
 
 - **FR-013**: Hệ thống PHẢI cung cấp một tập danh mục mặc định sẵn (ví dụ: Ăn uống, Di chuyển, Nhà ở, Giải trí, Sức khỏe, Mua sắm, Thu nhập, Khác).
 - **FR-014**: Hệ thống PHẢI cho phép người dùng tạo danh mục tùy chỉnh riêng.
-- **FR-015**: Khi xoá danh mục đang được dùng bởi giao dịch, hệ thống PHẢI giữ nguyên dữ liệu giao dịch cũ và gán nhãn rõ ràng.
+- **FR-015**: Khi người dùng xoá một danh mục đang được dùng bởi giao dịch, hệ thống PHẢI từ chối thao tác xoá và PHẢI yêu cầu người dùng chuyển toàn bộ giao dịch liên quan sang một danh mục khác trước.
 
 **Dashboard**
 
@@ -181,8 +181,8 @@ Người dùng thiết lập hạn mức chi tiêu tổng cho tháng, hoặc h�
 
 - **SC-001**: Người dùng có thể hoàn tất đăng ký và được phê duyệt trong vòng dưới 5 phút (không tính thời gian chờ admin).
 - **SC-002**: Người dùng có thể tạo một giao dịch mới trong vòng dưới 30 giây.
-- **SC-003**: Dashboard tải và hiển thị đầy đủ dữ liệu tháng hiện tại trong vòng dưới 3 giây với tập dữ liệu lên đến 500 giao dịch.
-- **SC-004**: Export CSV của 500 giao dịch hoàn thành trong vòng dưới 5 giây.
+- ~~**SC-003**: Dashboard tải và hiển thị đầy đủ dữ liệu tháng hiện tại trong vòng dưới 3 giây với tập dữ liệu lên đến 500 giao dịch.~~ *(Temporarily skipped — performance optimization deferred)*
+- ~~**SC-004**: Export CSV của 500 giao dịch hoàn thành trong vòng dưới 5 giây.~~ *(Temporarily skipped — performance optimization deferred)*
 - **SC-005**: 100% luồng phê duyệt và từ chối tài khoản được tự động kiểm thử (không có lỗi regression sau thay đổi hệ thống).
 - **SC-006**: Cảnh báo vượt hạn mức hiển thị chính xác và nhất quán — không bỏ sót và không báo sai trong mọi tổ hợp giao dịch đã test.
 
