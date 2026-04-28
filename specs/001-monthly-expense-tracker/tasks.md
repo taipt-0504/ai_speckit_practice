@@ -154,16 +154,16 @@
 
 ### Tests for User Story 5 ⚠️
 
-- [ ] T049 [P] [US5] Add unit tests for limit-threshold and progress calculations in monthly-expense-tracker/__tests__/unit/calculations.test.ts
-- [ ] T050 [P] [US5] Add component tests for limit forms and alert rendering in monthly-expense-tracker/__tests__/components/LimitForm.test.tsx and monthly-expense-tracker/__tests__/components/LimitAlerts.test.tsx
-- [ ] T051 [P] [US5] Add integration tests for spending-limit CRUD and alert thresholds in monthly-expense-tracker/__tests__/integration/spending-limit.test.ts
-- [ ] T052 [US5] Document the failing-first limit workflow in monthly-expense-tracker/README.md
+- [x] T049 [P] [US5] Add unit tests for limit-threshold and progress calculations in monthly-expense-tracker/__tests__/unit/calculations.test.ts
+- [x] T050 [P] [US5] Add component tests for limit forms and alert rendering in monthly-expense-tracker/__tests__/components/LimitForm.test.tsx and monthly-expense-tracker/__tests__/components/LimitAlerts.test.tsx
+- [x] T051 [P] [US5] Add integration tests for spending-limit CRUD and alert thresholds in monthly-expense-tracker/__tests__/integration/spending-limit.test.ts
+- [x] T052 [US5] Document the failing-first limit workflow in monthly-expense-tracker/README.md
 
 ### Implementation for User Story 5
 
-- [ ] T053 [P] [US5] Implement spending-limit API routes in monthly-expense-tracker/app/api/spending-limits/route.ts and monthly-expense-tracker/app/api/spending-limits/[id]/route.ts
-- [ ] T054 [P] [US5] Build limit management and alert components in monthly-expense-tracker/components/spending-limit/LimitForm.tsx, monthly-expense-tracker/components/spending-limit/LimitList.tsx, monthly-expense-tracker/components/spending-limit/LimitProgressBar.tsx, and monthly-expense-tracker/components/dashboard/LimitAlerts.tsx
-- [ ] T055 [US5] Build the limits page and integrate limit data into dashboard hooks in monthly-expense-tracker/app/(protected)/limits/page.tsx and monthly-expense-tracker/lib/hooks/useSpendingLimits.ts
+- [x] T053 [P] [US5] Implement spending-limit API routes in monthly-expense-tracker/app/api/spending-limits/route.ts and monthly-expense-tracker/app/api/spending-limits/[id]/route.ts
+- [x] T054 [P] [US5] Build limit management and alert components in monthly-expense-tracker/components/spending-limit/LimitForm.tsx, monthly-expense-tracker/components/spending-limit/LimitList.tsx, monthly-expense-tracker/components/spending-limit/LimitProgressBar.tsx, and monthly-expense-tracker/components/dashboard/LimitAlerts.tsx
+- [x] T055 [US5] Build the limits page and integrate limit data into dashboard hooks in monthly-expense-tracker/app/(protected)/limits/page.tsx and monthly-expense-tracker/lib/hooks/useSpendingLimits.ts
 
 **Checkpoint**: All user stories are independently functional, including proactive spending alerts.
 

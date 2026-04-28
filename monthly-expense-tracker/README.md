@@ -82,3 +82,23 @@ Run US4 focused tests:
 npx vitest __tests__/unit/csv.test.ts __tests__/integration/filter-export.test.ts --run
 ```
 
+## Phase 7 (US5) Failing-First Spending Limits & Alerts Flow
+
+US5 adds monthly and per-category spending limits with threshold-based alerts, implemented test-first:
+
+1. Unit tests verify `calculateSpendingLimitStatus` returns `normal` / `warning` (≥80%) / `exceeded` (≥100%) correctly.
+2. Component tests validate `LimitForm` submission, validation errors, and `LimitAlerts` renders warning/exceeded states with correct colors and labels.
+3. Integration tests verify full CRUD for `/api/spending-limits` and `/api/spending-limits/[id]`: create, list, update, delete, and 404 for missing records.
+
+Spending limit features:
+- Monthly total limit: alert when overall expense for the month nears or exceeds the cap.
+- Per-category limit: alert when expense in a specific category nears or exceeds the cap.
+- Dashboard `LimitAlerts` component shows inline yellow (warning) / red (exceeded) banners.
+- `/limits` page lets users manage limits by month with an add form and delete actions.
+
+Run US5 focused tests:
+
+```bash
+npx vitest __tests__/unit/calculations.test.ts __tests__/components/LimitForm.test.tsx __tests__/components/LimitAlerts.test.tsx __tests__/integration/spending-limit.test.ts --run
+```
+
