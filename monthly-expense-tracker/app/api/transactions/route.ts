@@ -58,14 +58,6 @@ export async function GET(request: NextRequest) {
               },
             }
           : {}),
-        ...(search
-          ? {
-              OR: [
-                { title: { contains: search, mode: 'insensitive' as const } },
-                { notes: { contains: search, mode: 'insensitive' as const } },
-              ],
-            }
-          : {}),
       };
 
       const [transactions, total] = await Promise.all([
@@ -73,16 +65,31 @@ export async function GET(request: NextRequest) {
           where,
           include: { category: { select: { id: true, name: true } } },
           orderBy: { date: 'desc' },
-          skip: offset,
-          take: limit,
+          skip: search ? 0 : offset,
+          take: search ? undefined : limit,
         }),
         prisma.transaction.count({ where }),
       ]);
 
+      // Apply search filter in memory (SQLite doesn't support insensitive mode)
+      let filtered = transactions;
+      let filteredTotal = total;
+      if (search) {
+        const query = search.toLowerCase();
+        filtered = transactions.filter((tx) => {
+          return (
+            tx.title.toLowerCase().includes(query) ||
+            (tx.notes ?? '').toLowerCase().includes(query)
+          );
+        });
+        filteredTotal = filtered.length;
+        filtered = filtered.slice(offset, offset + limit);
+      }
+
       return NextResponse.json(
         {
-          transactions: transactions.map(mapTransaction),
-          total,
+          transactions: filtered.map(mapTransaction),
+          total: filteredTotal,
           limit,
           offset,
         },
