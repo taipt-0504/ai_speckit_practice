@@ -150,4 +150,42 @@ describe('Transaction filter and export integration', () => {
     // Should escape quotes and commas properly
     expect(csv).toBeTruthy();
   });
+
+  it('search by notes text returns matching transactions', async () => {
+    const res = await fetch(`${BASE_URL}/api/transactions?search=airport`);
+    const data = (await res.json()) as { transactions: { id: string }[]; total: number };
+
+    expect(data.total).toBe(1);
+    expect(data.transactions[0].id).toBe('tx3'); // Uber trip – notes: 'To airport'
+  });
+
+  it('search is case-insensitive', async () => {
+    const res = await fetch(`${BASE_URL}/api/transactions?search=RESTAURANT`);
+    const data = (await res.json()) as { transactions: { id: string }[]; total: number };
+
+    expect(data.total).toBe(1);
+    expect(data.transactions[0].id).toBe('tx1');
+  });
+
+  it('search with no match returns empty list', async () => {
+    server.use(
+      http.get(`${BASE_URL}/api/transactions`, () =>
+        HttpResponse.json({ transactions: [], total: 0 }),
+      ),
+    );
+
+    const res = await fetch(`${BASE_URL}/api/transactions?search=xyz_no_match`);
+    const data = (await res.json()) as { transactions: unknown[]; total: number };
+
+    expect(data.total).toBe(0);
+    expect(data.transactions).toHaveLength(0);
+  });
+
+  it('combined search + type filter returns correct results', async () => {
+    const res = await fetch(`${BASE_URL}/api/transactions?type=expense&search=lunch`);
+    const data = (await res.json()) as { transactions: { id: string }[]; total: number };
+
+    expect(data.total).toBe(1);
+    expect(data.transactions[0].id).toBe('tx1');
+  });
 });

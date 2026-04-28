@@ -3,6 +3,7 @@ import {
   calculateTotals,
   calculateCategoryBreakdown,
   calculateSpendingLimitStatus,
+  filterTransactionsByKeyword,
   getBalance,
 } from '@/lib/utils/calculations';
 import type { Transaction } from '@/types/forms';
@@ -176,5 +177,61 @@ describe('calculateSpendingLimitStatus', () => {
     const result = calculateSpendingLimitStatus(500000, 0);
     expect(result.percentage).toBe(0);
     expect(result.status).toBe('normal');
+  });
+});
+
+describe('filterTransactionsByKeyword', () => {
+  const items = [
+    { id: 'tx1', title: 'Lunch at restaurant', notes: 'Delicious meal' },
+    { id: 'tx2', title: 'Salary', notes: null },
+    { id: 'tx3', title: 'Uber trip', notes: 'To airport' },
+    { id: 'tx4', title: 'Mua sắm', notes: 'Áo mới' },
+  ];
+
+  it('returns all items when keyword is empty', () => {
+    expect(filterTransactionsByKeyword(items, '')).toHaveLength(4);
+    expect(filterTransactionsByKeyword(items, undefined)).toHaveLength(4);
+    expect(filterTransactionsByKeyword(items, '   ')).toHaveLength(4);
+  });
+
+  it('matches by title (case-insensitive)', () => {
+    const result = filterTransactionsByKeyword(items, 'LUNCH');
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('tx1');
+  });
+
+  it('matches by notes (case-insensitive)', () => {
+    const result = filterTransactionsByKeyword(items, 'AIRPORT');
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('tx3');
+  });
+
+  it('matches partial words', () => {
+    const result = filterTransactionsByKeyword(items, 'trip');
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('tx3');
+  });
+
+  it('matches items where keyword appears in notes but not title', () => {
+    const result = filterTransactionsByKeyword(items, 'Delicious');
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('tx1');
+  });
+
+  it('skips items with null notes without error', () => {
+    const result = filterTransactionsByKeyword(items, 'salary');
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('tx2');
+  });
+
+  it('returns empty array when no match found', () => {
+    const result = filterTransactionsByKeyword(items, 'xyz_no_match');
+    expect(result).toHaveLength(0);
+  });
+
+  it('matches Unicode / Vietnamese text', () => {
+    const result = filterTransactionsByKeyword(items, 'sắm');
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('tx4');
   });
 });
