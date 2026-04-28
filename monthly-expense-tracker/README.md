@@ -41,3 +41,24 @@ Run US2 focused tests:
 ```bash
 npx vitest __tests__/unit/validation.test.ts __tests__/components/TransactionForm.test.tsx __tests__/components/CategoryForm.test.tsx __tests__/integration/transaction-crud.test.ts --run
 ```
+
+## Phase 5 (US3) Failing-First Dashboard Flow
+
+US3 follows the same failing-first approach for the monthly dashboard:
+
+1. Unit tests verify `calculateCategoryBreakdown` and `calculateSpendingLimitStatus` logic.
+2. Component tests verify `MonthlyOverview` renders income/expense/balance and `CategoryBreakdown` renders category names and percentages.
+3. Integration tests mock the `/api/dashboard` endpoint and verify month switching, category breakdown, monthly trend, and empty states.
+
+Dashboard features:
+- Summary cards: total income, total expense, balance, transaction count
+- Bar chart: last 3 months income vs expense trend (recharts)
+- Pie chart: expense breakdown by category (recharts)
+- Spending limit alerts: warning (≥80%) and exceeded (≥100%) badges
+
+Run US3 focused tests:
+
+```bash
+npx vitest __tests__/unit/calculations.test.ts __tests__/components/DashboardCharts.test.tsx __tests__/components/CategoryBreakdown.test.tsx __tests__/integration/dashboard.test.ts --run
+```
+

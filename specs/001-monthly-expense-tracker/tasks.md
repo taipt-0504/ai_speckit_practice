@@ -107,17 +107,17 @@
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T034 [P] [US3] Add unit tests for monthly aggregation and category breakdown logic in monthly-expense-tracker/__tests__/unit/calculations.test.ts
-- [ ] T035 [P] [US3] Add component tests for dashboard chart and overview rendering in monthly-expense-tracker/__tests__/components/DashboardCharts.test.tsx and monthly-expense-tracker/__tests__/components/CategoryBreakdown.test.tsx
-- [ ] T036 [P] [US3] Add integration tests for dashboard aggregates, month switching, and empty states in monthly-expense-tracker/__tests__/integration/dashboard.test.ts
-- [ ] T037 [US3] Document the failing-first dashboard validation flow in monthly-expense-tracker/README.md
+- [x] T034 [P] [US3] Add unit tests for monthly aggregation and category breakdown logic in monthly-expense-tracker/__tests__/unit/calculations.test.ts
+- [x] T035 [P] [US3] Add component tests for dashboard chart and overview rendering in monthly-expense-tracker/__tests__/components/DashboardCharts.test.tsx and monthly-expense-tracker/__tests__/components/CategoryBreakdown.test.tsx
+- [x] T036 [P] [US3] Add integration tests for dashboard aggregates, month switching, and empty states in monthly-expense-tracker/__tests__/integration/dashboard.test.ts
+- [x] T037 [US3] Document the failing-first dashboard validation flow in monthly-expense-tracker/README.md
 
 ### Implementation for User Story 3
 
-- [ ] T038 [P] [US3] Implement the dashboard aggregate API route in monthly-expense-tracker/app/api/dashboard/route.ts
-- [ ] T039 [P] [US3] Build the dashboard visualization components in monthly-expense-tracker/components/dashboard/MonthlyOverview.tsx, monthly-expense-tracker/components/dashboard/IncomeExpenseChart.tsx, and monthly-expense-tracker/components/dashboard/CategoryBreakdown.tsx
-- [ ] T040 [P] [US3] Implement dashboard data loading and month selection state in monthly-expense-tracker/lib/hooks/useDashboard.ts
-- [ ] T041 [US3] Build the responsive dashboard page and empty state in monthly-expense-tracker/app/(protected)/dashboard/page.tsx
+- [x] T038 [P] [US3] Implement the dashboard aggregate API route in monthly-expense-tracker/app/api/dashboard/route.ts
+- [x] T039 [P] [US3] Build the dashboard visualization components in monthly-expense-tracker/components/dashboard/MonthlyOverview.tsx, monthly-expense-tracker/components/dashboard/IncomeExpenseChart.tsx, and monthly-expense-tracker/components/dashboard/CategoryBreakdown.tsx
+- [x] T040 [P] [US3] Implement dashboard data loading and month selection state in monthly-expense-tracker/lib/hooks/useDashboard.ts
+- [x] T041 [US3] Build the responsive dashboard page and empty state in monthly-expense-tracker/app/(protected)/dashboard/page.tsx
 
 **Checkpoint**: User Stories 1-3 now provide an MVP with auth, transaction capture, and monthly insight dashboard.
 
