@@ -1,5 +1,4 @@
 import prisma from '@/lib/db/prisma';
-import { JWTPayload } from './jwt';
 
 export interface SessionData {
   userId: string;

@@ -19,15 +19,15 @@ export default function Home() {
           if (data.user?.status === 'active') {
             router.push('/dashboard');
           } else if (data.user?.status === 'pending') {
-            router.push('/auth/waiting');
+            router.push('/waiting');
           } else {
-            router.push('/auth/login');
+            router.push('/login');
           }
         } else {
-          router.push('/auth/login');
+          router.push('/login');
         }
       } catch (error) {
-        router.push('/auth/login');
+        router.push('/login');
       }
     };
 

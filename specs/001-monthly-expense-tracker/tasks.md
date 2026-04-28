@@ -55,18 +55,18 @@
 
 > **NOTE: Write these tests first and confirm they fail before implementation.**
 
-- [ ] T014 [P] [US1] Add unit tests for password, token, and account-status rules in monthly-expense-tracker/__tests__/unit/auth.test.ts
-- [ ] T015 [P] [US1] Add component tests for signup/login form states in monthly-expense-tracker/__tests__/components/RegisterForm.test.tsx and monthly-expense-tracker/__tests__/components/LoginForm.test.tsx
-- [ ] T016 [P] [US1] Add integration tests for sign-up, pending login rejection, admin approval, and successful login in monthly-expense-tracker/__tests__/integration/auth-flow.test.ts
-- [ ] T017 [US1] Document the failing-first auth execution flow in monthly-expense-tracker/README.md
+- [x] T014 [P] [US1] Add unit tests for password, token, and account-status rules in monthly-expense-tracker/__tests__/unit/auth.test.ts
+- [x] T015 [P] [US1] Add component tests for signup/login form states in monthly-expense-tracker/__tests__/components/RegisterForm.test.tsx and monthly-expense-tracker/__tests__/components/LoginForm.test.tsx
+- [x] T016 [P] [US1] Add integration tests for sign-up, pending login rejection, admin approval, and successful login in monthly-expense-tracker/__tests__/integration/auth-flow.test.ts
+- [x] T017 [US1] Document the failing-first auth execution flow in monthly-expense-tracker/README.md
 
 ### Implementation for User Story 1
 
-- [ ] T018 [P] [US1] Implement the registration, login, logout, and current-user API routes in monthly-expense-tracker/app/api/auth/register/route.ts, monthly-expense-tracker/app/api/auth/login/route.ts, monthly-expense-tracker/app/api/auth/logout/route.ts, and monthly-expense-tracker/app/api/auth/me/route.ts
-- [ ] T019 [P] [US1] Implement the admin pending-users, approve, and reject API routes in monthly-expense-tracker/app/api/users/pending/route.ts, monthly-expense-tracker/app/api/users/[id]/approve/route.ts, and monthly-expense-tracker/app/api/users/[id]/reject/route.ts
-- [ ] T020 [P] [US1] Build the auth pages and reusable auth forms in monthly-expense-tracker/app/(auth)/register/page.tsx, monthly-expense-tracker/app/(auth)/login/page.tsx, monthly-expense-tracker/app/(auth)/waiting/page.tsx, monthly-expense-tracker/components/auth/RegisterForm.tsx, monthly-expense-tracker/components/auth/LoginForm.tsx, and monthly-expense-tracker/components/auth/AuthFormLayout.tsx
-- [ ] T021 [US1] Build the admin approval screen in monthly-expense-tracker/app/(protected)/admin/users/page.tsx and monthly-expense-tracker/components/admin/PendingUsersList.tsx
-- [ ] T022 [US1] Add auth state hooks, route redirects, and session wiring in monthly-expense-tracker/lib/hooks/useAuth.ts and monthly-expense-tracker/app/(protected)/page.tsx
+- [x] T018 [P] [US1] Implement the registration, login, logout, and current-user API routes in monthly-expense-tracker/app/api/auth/register/route.ts, monthly-expense-tracker/app/api/auth/login/route.ts, monthly-expense-tracker/app/api/auth/logout/route.ts, and monthly-expense-tracker/app/api/auth/me/route.ts
+- [x] T019 [P] [US1] Implement the admin pending-users, approve, and reject API routes in monthly-expense-tracker/app/api/users/pending/route.ts, monthly-expense-tracker/app/api/users/[id]/approve/route.ts, and monthly-expense-tracker/app/api/users/[id]/reject/route.ts
+- [x] T020 [P] [US1] Build the auth pages and reusable auth forms in monthly-expense-tracker/app/(auth)/register/page.tsx, monthly-expense-tracker/app/(auth)/login/page.tsx, monthly-expense-tracker/app/(auth)/waiting/page.tsx, monthly-expense-tracker/components/auth/RegisterForm.tsx, monthly-expense-tracker/components/auth/LoginForm.tsx, and monthly-expense-tracker/components/auth/AuthFormLayout.tsx
+- [x] T021 [US1] Build the admin approval screen in monthly-expense-tracker/app/(protected)/admin/users/page.tsx and monthly-expense-tracker/components/admin/PendingUsersList.tsx
+- [x] T022 [US1] Add auth state hooks, route redirects, and session wiring in monthly-expense-tracker/lib/hooks/useAuth.ts and monthly-expense-tracker/app/(protected)/page.tsx
 
 **Checkpoint**: User Story 1 should be fully functional and independently testable.
 

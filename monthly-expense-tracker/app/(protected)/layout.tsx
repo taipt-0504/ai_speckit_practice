@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { Loading } from '@/components/common/Loading';
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -21,14 +22,14 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
           if (data.user?.status === 'active') {
             setIsAuthorized(true);
           } else {
-            router.push('/auth/waiting');
+            router.push('/waiting');
           }
         } else {
-          router.push('/auth/login');
+          router.push('/login');
         }
       } catch (error) {
         console.error('Auth check failed:', error);
-        router.push('/auth/login');
+        router.push('/login');
       } finally {
         setIsLoading(false);
       }
@@ -38,11 +39,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
   }, [router]);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="spinner"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!isAuthorized) {

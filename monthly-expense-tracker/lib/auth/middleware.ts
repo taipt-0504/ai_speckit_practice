@@ -13,7 +13,7 @@ export interface AuthRequest extends NextRequest {
 }
 
 // Middleware to validate JWT token
-export async function withAuth(
+export function withAuth(
   handler: (req: AuthRequest) => Promise<NextResponse>
 ) {
   return async (request: NextRequest) => {
@@ -48,14 +48,18 @@ export async function withAuth(
 
     // Attach user to request
     const req = request as AuthRequest;
-    req.user = payload;
+    req.user = {
+      id: payload.userId,
+      email: payload.email,
+      role: payload.role,
+    };
 
     return handler(req);
   };
 }
 
 // Middleware to require admin role
-export async function withAdminAuth(
+export function withAdminAuth(
   handler: (req: AuthRequest) => Promise<NextResponse>
 ) {
   return withAuth(async (request: AuthRequest) => {
@@ -71,7 +75,7 @@ export async function withAdminAuth(
 }
 
 // Middleware to require active status
-export async function withActiveUserAuth(
+export function withActiveUserAuth(
   handler: (req: AuthRequest) => Promise<NextResponse>
 ) {
   return withAuth(async (request: AuthRequest) => {

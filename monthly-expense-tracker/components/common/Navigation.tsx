@@ -1,7 +1,5 @@
 'use client';
 
-'use client';
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -25,7 +23,7 @@ export function Navigation() {
   const handleLogout = async () => {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
-      router.push('/auth/login');
+      router.push('/login');
     } catch (error) {
       console.error('Logout failed:', error);
     }
