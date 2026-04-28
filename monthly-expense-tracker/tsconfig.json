@@ -39,6 +39,7 @@
         "./*"
       ]
     },
+    "types": ["node"],
     "allowJs": true,
     "incremental": true,
     "plugins": [
@@ -60,5 +61,10 @@
     "node_modules",
     "dist",
     ".next"
-  ]
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
