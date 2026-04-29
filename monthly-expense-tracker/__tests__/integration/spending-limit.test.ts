@@ -55,8 +55,9 @@ vi.mock('@/lib/db/prisma', () => ({
               l.categoryId === (where.categoryId ?? null)
           ) ?? null
       ),
-      findUnique: vi.fn(async ({ where: { id } }: { where: { id: string } }) =>
-        spendingLimits.find((l) => l.id === id) ?? null
+      findUnique: vi.fn(
+        async ({ where: { id } }: { where: { id: string } }) =>
+          spendingLimits.find((l) => l.id === id) ?? null
       ),
       create: vi.fn(
         async ({
@@ -84,7 +85,13 @@ vi.mock('@/lib/db/prisma', () => ({
         }
       ),
       update: vi.fn(
-        async ({ where: { id }, data }: { where: { id: string }; data: Record<string, unknown> }) => {
+        async ({
+          where: { id },
+          data,
+        }: {
+          where: { id: string };
+          data: Record<string, unknown>;
+        }) => {
           const idx = spendingLimits.findIndex((l) => l.id === id);
           spendingLimits[idx] = { ...spendingLimits[idx], ...data, updatedAt: new Date() };
           return spendingLimits[idx];

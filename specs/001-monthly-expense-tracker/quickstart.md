@@ -1,14 +1,13 @@
 # Quickstart: Monthly Expense Tracker Implementation
 
-**Purpose**: Step-by-step guide to set up local development environment, understand project structure, and run first tests.
-**Target**: Backend/frontend developers onboarding to the project.
+**Purpose**: Step-by-step guide to bootstrap the existing repository, validate the local environment, and run core checks.
+**Target**: Backend/frontend developers onboarding to the current project workspace.
 
 ## Prerequisites
 
-- Node.js 20.9.0+ (use `nvm` or similar if needed)
+- Node.js 20.19.0+ (matches `package.json` engines)
 - npm or yarn
 - Docker Engine + Docker Compose plugin (recommended for cross-environment setup)
-- SQLite3 (usually bundled with Node or available via package manager)
 - Git (for version control)
 
 **Target runtime baseline**:
@@ -19,87 +18,51 @@
 Quick runtime verification:
 
 ```bash
-node -v   # must be >= 20.9.0
+node -v   # must be >= 20.19.0
 npm -v
 ```
 
-## Phase 1: Project Setup (5 mins)
+## Phase 1: Existing Project Setup (5 mins)
 
-Choose one setup path:
-- Local Node.js path: use your host Node.js 20.9.0+
-- Docker path: use containers for runtime and commands to avoid host-environment drift
+The repository is already scaffolded. Use these commands instead of re-running `create-next-app` or `prisma init`.
 
-### 1. Initialize Next.js Project
-
-```bash
-# Create a new Next.js project on the current stable line
-npx create-next-app@latest monthly-expense-tracker \
-  --typescript \
-  --tailwind \
-  --app \
-  --eslint \
-  --no-git \
-  --src-dir=true
-
-cd monthly-expense-tracker
-
-# Verify the scaffolded version is on the Next.js 16 stable line
-npm ls next
-```
-
-Expected result: `next@16.x`.
-
-If `@latest` ever stops resolving to the 16.x stable line in the future, pin the dependency explicitly:
-
-```bash
-npm install next@^16 react react-dom
-```
-
-If local Node is below 20.9.0, switch runtime before continuing:
-
-```bash
-nvm use 20.9.0 || nvm install 20.9.0
-```
-
-### 2. Install Core Dependencies
-
-```bash
-npm install \
-  prisma \
-  @prisma/client \
-  bcryptjs \
-  jsonwebtoken \
-  zod \
-  recharts \
-  csv-writer
-```
-
-### 3. Install Dev Dependencies
-
-```bash
-npm install --save-dev \
-  vitest \
-  @vitejs/plugin-react \
-  @testing-library/react \
-  @testing-library/jest-dom \
-  msw \
-  @types/jsonwebtoken \
-  typescript-eslint
-```
-
-### 4. Run the Project with Docker (Recommended for Cross-Environment Parity)
-
-Use Docker when you want identical runtime behavior across developer machines:
+### 1. Install and configure local environment
 
 ```bash
 cd monthly-expense-tracker
 cp .env.example .env.local
+npm install
+npx prisma generate
+```
+
+### 2. Prepare local database
+
+```bash
+npm run db:migrate
+npm run db:seed
+```
+
+Seed result includes:
+
+- Admin user: `admin@example.com`
+- Admin password: `admin123`
+- Default categories for income/expense tracking
+
+### 3. Start the application
+
+```bash
+npm run dev
+```
+
+App runs at `http://localhost:3000`.
+
+### 4. Optional Docker runtime
+
+```bash
 docker compose up --build
 ```
 
-App is available at `http://localhost:3000`.
-
-For one-off commands in container:
+Useful one-off container commands:
 
 ```bash
 docker compose run --rm app npm run db:migrate
@@ -107,108 +70,7 @@ docker compose run --rm app npm run db:seed
 docker compose run --rm app npm run test
 ```
 
-If you are not using Docker, continue the remaining steps below on your local machine.
-
-## Phase 2: Database Setup (10 mins)
-
-### 1. Initialize Prisma
-
-```bash
-npx prisma init
-
-# Creates: .env.local, prisma/schema.prisma
-```
-
-### 2. Configure Database in `.env.local`
-
-```
-DATABASE_URL="file:./dev.db"
-JWT_SECRET="your-secret-key-change-in-prod"
-JWT_EXPIRY="7d"
-NEXT_PUBLIC_API_URL="http://localhost:3000"
-```
-
-### 3. Set Prisma Schema
-
-See `specs/001-monthly-expense-tracker/data-model.md` for entity definitions.
-Define schema in `prisma/schema.prisma` with all User, Transaction, Category, SpendingLimit models.
-
-### 4. Run Migrations
-
-```bash
-# Create migration (auto-generates from schema)
-npx prisma migrate dev --name init
-
-# Creates: prisma/migrations/[timestamp]_init/ with SQL files
-# Also runs the migration immediately
-```
-
-### 5. Seed Default Data
-
-Create `prisma/seed.ts`:
-
-```typescript
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
-
-const prisma = new PrismaClient();
-
-async function main() {
-  // Seed default categories
-  const categories = [
-    "Ăn uống",
-    "Di chuyển",
-    "Nhà ở",
-    "Giải trí",
-    "Sức khỏe",
-    "Mua sắm",
-    "Thu nhập",
-    "Khác",
-  ];
-
-  for (const name of categories) {
-    const existingCategory = await prisma.category.findFirst({
-      where: { name },
-    });
-
-    if (!existingCategory) {
-      await prisma.category.create({
-        data: {
-          name,
-          isDefault: true,
-          color: "#3B82F6",
-        },
-      });
-    }
-  }
-
-  // Seed admin user
-  const hashedPassword = await bcrypt.hash("admin123", 10);
-  await prisma.user.upsert({
-    where: { email: "admin@example.com" },
-    update: {},
-    create: {
-      email: "admin@example.com",
-      passwordHash: hashedPassword,
-      role: "admin",
-      status: "active",
-    },
-  });
-
-  console.log("Seeding completed");
-}
-
-main()
-  .catch((e) => console.error(e))
-  .finally(async () => await prisma.$disconnect());
-```
-
-Run seed:
-```bash
-npx prisma db seed
-```
-
-## Phase 3: Project Structure Verification (5 mins)
+## Phase 2: Project Structure Verification (5 mins)
 
 Expected folders after setup:
 
@@ -253,6 +115,23 @@ monthly-expense-tracker/
 ├── tailwind.config.ts
 ├── vitest.config.ts
 └── next.config.js
+```
+
+## Phase 3: Validation Commands (10 mins)
+
+Run these before starting new work:
+
+```bash
+npm run lint
+npm run type-check
+npm run test
+```
+
+Focused validation used during current implementation:
+
+```bash
+npx vitest __tests__/integration/auth-flow.test.ts __tests__/components/ProtectedShell.test.tsx --run
+npx vitest __tests__/integration/dashboard.test.ts __tests__/integration/filter-export.test.ts __tests__/integration/spending-limit.test.ts --run
 ```
 
 ## Phase 4: Authentication Setup (15 mins)
@@ -497,6 +376,7 @@ After this quickstart:
 
 - [ ] Run `npm run dev` and verify app starts at localhost:3000
 - [ ] Run `npm run test` and verify all tests pass
+- [ ] Run `npm run type-check`
 - [ ] Explore `specs/001-monthly-expense-tracker/contracts/` for API endpoint specs
 - [ ] Read `data-model.md` and understand entities
 - [ ] Implement first P1 user story (Auth & Approval)
@@ -506,11 +386,11 @@ After this quickstart:
 
 ## Troubleshooting
 
-**Database error**: Ensure `.env.local` has `DATABASE_URL="file:./dev.db"` and migrations are applied via `npx prisma migrate dev`.
+**Database error**: Ensure `.env.local` has `DATABASE_URL="file:./prisma/dev.db"` and migrations are applied via `npm run db:migrate`.
 
 **Test fails**: Check that `vitest.config.ts` is configured and Prisma is properly initialized.
 
-**API 401 Unauthorized**: Ensure JWT token is being passed in Authorization header as `Bearer <token>`.
+**API 401 Unauthorized**: Ensure auth cookie is set and the seeded admin account has been created via `npm run db:seed`.
 
 **Port 3000 in use**: Run on different port via `npm run dev -- -p 3001`.
 

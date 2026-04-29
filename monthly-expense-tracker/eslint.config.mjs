@@ -4,8 +4,26 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
   {
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-    ignores: ['node_modules/**', '.next/**', 'dist/**', 'build/**'],
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'dist/**',
+      'build/**',
+      'coverage/**',
+      'specs/**',
+      '.specify/**',
+    ],
+  },
+  {
+    files: ['**/*.{js,mjs,cjs,ts,tsx}'],
+    languageOptions: {
+      globals: {
+        console: 'readonly',
+        fetch: 'readonly',
+        module: 'readonly',
+        process: 'readonly',
+      },
+    },
     rules: {
       'prettier/prettier': 'error',
     },

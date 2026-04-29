@@ -78,8 +78,7 @@ export async function GET(request: NextRequest) {
         const query = search.toLowerCase();
         filtered = transactions.filter((tx) => {
           return (
-            tx.title.toLowerCase().includes(query) ||
-            (tx.notes ?? '').toLowerCase().includes(query)
+            tx.title.toLowerCase().includes(query) || (tx.notes ?? '').toLowerCase().includes(query)
           );
         });
         filteredTotal = filtered.length;

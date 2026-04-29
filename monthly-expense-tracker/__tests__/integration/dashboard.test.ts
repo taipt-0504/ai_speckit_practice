@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { http, HttpResponse } from 'msw';
 import { server } from '../setup';
 
@@ -131,5 +131,43 @@ describe('Dashboard API integration', () => {
 
     const res = await fetch(`${BASE_URL}/api/dashboard`);
     expect(res.status).toBe(401);
+  });
+
+  it('returns warning and exceeded spending limit states', async () => {
+    server.use(
+      http.get(`${BASE_URL}/api/dashboard`, () => {
+        return HttpResponse.json(
+          makeDashboardResponse({
+            spending_limits: [
+              {
+                id: 'limit_1',
+                type: 'monthly_total',
+                limit_amount: 5000000,
+                spent_amount: 4200000,
+                percentage: 84,
+                status: 'warning',
+                category: null,
+              },
+              {
+                id: 'limit_2',
+                type: 'per_category',
+                limit_amount: 1000000,
+                spent_amount: 1250000,
+                percentage: 125,
+                status: 'exceeded',
+                category: { id: 'cat1', name: 'Ăn uống' },
+              },
+            ],
+          })
+        );
+      })
+    );
+
+    const res = await fetch(`${BASE_URL}/api/dashboard`);
+    const data = await res.json();
+
+    expect(data.spending_limits).toHaveLength(2);
+    expect(data.spending_limits[0].status).toBe('warning');
+    expect(data.spending_limits[1].status).toBe('exceeded');
   });
 });

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { http, HttpResponse } from 'msw';
 import { server } from '../setup';
 
@@ -9,7 +9,6 @@ describe('Transaction filter and export integration', () => {
     server.use(
       http.get(`${BASE_URL}/api/transactions`, ({ request }) => {
         const url = new URL(request.url);
-        const month = url.searchParams.get('month');
         const type = url.searchParams.get('type');
         const search = url.searchParams.get('search');
 
@@ -170,8 +169,8 @@ describe('Transaction filter and export integration', () => {
   it('search with no match returns empty list', async () => {
     server.use(
       http.get(`${BASE_URL}/api/transactions`, () =>
-        HttpResponse.json({ transactions: [], total: 0 }),
-      ),
+        HttpResponse.json({ transactions: [], total: 0 })
+      )
     );
 
     const res = await fetch(`${BASE_URL}/api/transactions?search=xyz_no_match`);

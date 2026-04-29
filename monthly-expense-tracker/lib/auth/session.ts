@@ -1,3 +1,4 @@
+import type { Prisma, Session } from '@prisma/client';
 import prisma from '@/lib/db/prisma';
 
 export interface SessionData {
@@ -7,7 +8,13 @@ export interface SessionData {
   status: string;
 }
 
-export async function createSession(userId: string, token: string, expiresAt: Date): Promise<any> {
+type SessionWithUser = Prisma.SessionGetPayload<{ include: { user: true } }>;
+
+export async function createSession(
+  userId: string,
+  token: string,
+  expiresAt: Date
+): Promise<Session> {
   return prisma.session.create({
     data: {
       userId,
@@ -17,26 +24,26 @@ export async function createSession(userId: string, token: string, expiresAt: Da
   });
 }
 
-export async function getSessionByToken(token: string): Promise<any | null> {
+export async function getSessionByToken(token: string): Promise<SessionWithUser | null> {
   return prisma.session.findUnique({
     where: { token },
     include: { user: true },
   });
 }
 
-export async function deleteSession(token: string): Promise<any> {
+export async function deleteSession(token: string): Promise<Session> {
   return prisma.session.delete({
     where: { token },
   });
 }
 
-export async function deleteUserSessions(userId: string): Promise<any> {
+export async function deleteUserSessions(userId: string): Promise<Prisma.BatchPayload> {
   return prisma.session.deleteMany({
     where: { userId },
   });
 }
 
-export async function cleanExpiredSessions(): Promise<any> {
+export async function cleanExpiredSessions(): Promise<Prisma.BatchPayload> {
   return prisma.session.deleteMany({
     where: {
       expiresAt: {

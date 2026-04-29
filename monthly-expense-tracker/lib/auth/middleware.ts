@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyToken } from './jwt';
-import { getSessionByToken } from './session';
-import { cleanExpiredSessions } from './session';
+import { cleanExpiredSessions, getSessionByToken } from './session';
 import prisma from '@/lib/db/prisma';
 
 export interface AuthRequest extends NextRequest {
@@ -12,47 +11,44 @@ export interface AuthRequest extends NextRequest {
   };
 }
 
+function authError(message: string, status: number) {
+  return NextResponse.json({ success: false, error: message }, { status });
+}
+
 // Middleware to validate JWT token
 export function withAuth(handler: (req: AuthRequest) => Promise<NextResponse>) {
   return async (request: NextRequest) => {
-    const token = request.cookies.get('auth_token')?.value;
+    try {
+      const token = request.cookies.get('auth_token')?.value;
 
-    if (!token) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized - No token' },
-        { status: 401 }
-      );
+      if (!token) {
+        return authError('Unauthorized - No token', 401);
+      }
+
+      const payload = verifyToken(token);
+      if (!payload) {
+        return authError('Unauthorized - Invalid token', 401);
+      }
+
+      await cleanExpiredSessions();
+
+      const session = await getSessionByToken(token);
+      if (!session || new Date() > session.expiresAt) {
+        return authError('Unauthorized - Session expired', 401);
+      }
+
+      const req = request as AuthRequest;
+      req.user = {
+        id: payload.userId,
+        email: payload.email,
+        role: payload.role,
+      };
+
+      return handler(req);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Authentication failed';
+      return authError(message, 500);
     }
-
-    const payload = verifyToken(token);
-    if (!payload) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized - Invalid token' },
-        { status: 401 }
-      );
-    }
-
-    // Verify session exists and is not expired
-    const session = await getSessionByToken(token);
-    if (!session || new Date() > session.expiresAt) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized - Session expired' },
-        { status: 401 }
-      );
-    }
-
-    // Clean up expired sessions periodically
-    await cleanExpiredSessions();
-
-    // Attach user to request
-    const req = request as AuthRequest;
-    req.user = {
-      id: payload.userId,
-      email: payload.email,
-      role: payload.role,
-    };
-
-    return handler(req);
   };
 }
 
@@ -60,10 +56,7 @@ export function withAuth(handler: (req: AuthRequest) => Promise<NextResponse>) {
 export function withAdminAuth(handler: (req: AuthRequest) => Promise<NextResponse>) {
   return withAuth(async (request: AuthRequest) => {
     if (request.user?.role !== 'admin') {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden - Admin access required' },
-        { status: 403 }
-      );
+      return authError('Forbidden - Admin access required', 403);
     }
 
     return handler(request);
@@ -73,17 +66,19 @@ export function withAdminAuth(handler: (req: AuthRequest) => Promise<NextRespons
 // Middleware to require active status
 export function withActiveUserAuth(handler: (req: AuthRequest) => Promise<NextResponse>) {
   return withAuth(async (request: AuthRequest) => {
-    const user = await prisma.user.findUnique({
-      where: { id: request.user?.id },
-    });
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id: request.user?.id },
+      });
 
-    if (!user || user.status !== 'active') {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden - Account not active' },
-        { status: 403 }
-      );
+      if (!user || user.status !== 'active') {
+        return authError('Forbidden - Account not active', 403);
+      }
+
+      return handler(request);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to validate account state';
+      return authError(message, 500);
     }
-
-    return handler(request);
   });
 }

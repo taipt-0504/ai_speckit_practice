@@ -22,7 +22,7 @@ export function Navigation() {
 
   const handleLogout = async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
       router.push('/login');
     } catch (error) {
       console.error('Logout failed:', error);
@@ -30,19 +30,19 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-200">
+    <nav className="border-b border-gray-200 bg-white" aria-label="Primary navigation">
       <div className="px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-4 sm:gap-8">
             <Link href="/dashboard" className="text-xl font-bold text-blue-600">
               💰 Expense Tracker
             </Link>
-            <div className="hidden md:flex space-x-6">
+            <div className="hidden flex-wrap gap-4 md:flex md:items-center md:gap-6">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  className="rounded-md px-2 py-1 text-gray-600 transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   <span className="inline-block mr-1">{item.icon}</span>
                   {item.label}
@@ -51,8 +51,9 @@ export function Navigation() {
             </div>
           </div>
           <button
+            type="button"
             onClick={handleLogout}
-            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+            className="rounded-md bg-red-600 px-4 py-2 text-white transition-colors hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
           >
             Logout
           </button>

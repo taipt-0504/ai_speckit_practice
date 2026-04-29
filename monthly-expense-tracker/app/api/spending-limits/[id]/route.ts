@@ -3,10 +3,7 @@ import prisma from '@/lib/db/prisma';
 import { withActiveUserAuth, type AuthRequest } from '@/lib/auth/middleware';
 import { SpendingLimitUpdateSchema } from '@/lib/utils/validation';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const handler = withActiveUserAuth(async (req: AuthRequest) => {
     try {
       const { id } = await params;
@@ -39,10 +36,7 @@ export async function GET(
   return handler(request);
 }
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const handler = withActiveUserAuth(async (req: AuthRequest) => {
     try {
       const { id } = await params;

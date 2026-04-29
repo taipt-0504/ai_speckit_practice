@@ -1,5 +1,45 @@
 # Monthly Expense Tracker
 
+## Developer Onboarding
+
+Prerequisites:
+
+- Node.js `>= 20.19.0`
+- npm
+- Optional: Docker / Docker Compose for containerized runtime
+
+Local setup:
+
+```bash
+cd monthly-expense-tracker
+cp .env.example .env.local
+npm install
+npx prisma generate
+npm run db:migrate
+npm run db:seed
+npm run dev
+```
+
+Validated project commands:
+
+```bash
+npm run lint
+npm run type-check
+npm run test
+```
+
+Useful focused checks:
+
+```bash
+npx vitest __tests__/integration/auth-flow.test.ts __tests__/components/ProtectedShell.test.tsx --run
+npx vitest __tests__/integration/dashboard.test.ts __tests__/integration/filter-export.test.ts __tests__/integration/spending-limit.test.ts --run
+```
+
+Seeded admin account for local development:
+
+- Email: `admin@example.com`
+- Password: `admin123`
+
 ## Phase 3 (US1) Failing-First Auth Flow
 
 The auth/admin approval flow is implemented test-first with these checkpoints:

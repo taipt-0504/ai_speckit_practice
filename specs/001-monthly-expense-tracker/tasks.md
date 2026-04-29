@@ -193,12 +193,12 @@
 
 **Purpose**: Finish documentation, hardening, responsive cleanup, and full validation across the delivered stories.
 
-- [ ] T056 [P] Update developer onboarding and run commands in monthly-expense-tracker/README.md
-- [ ] T057 Refine shared responsive layout behavior and accessibility states in monthly-expense-tracker/components/common/Navigation.tsx, monthly-expense-tracker/components/common/Sidebar.tsx, and monthly-expense-tracker/styles/globals.css
-- [ ] T058 Re-run and fix lint, type-check, and formatting issues via monthly-expense-tracker/eslint.config.mjs, monthly-expense-tracker/tsconfig.json, and monthly-expense-tracker/.prettierrc.json
-- [ ] T059 [P] Add regression coverage for cross-story calculations and auth edge cases in monthly-expense-tracker/__tests__/integration/dashboard.test.ts and monthly-expense-tracker/__tests__/integration/auth-flow.test.ts
-- [ ] T060 Harden auth/session error handling and unauthorized states in monthly-expense-tracker/lib/auth/middleware.ts, monthly-expense-tracker/app/(auth)/error.tsx, and monthly-expense-tracker/app/(protected)/error.tsx
-- [ ] T061 Run the documented quickstart validation and update any drift in monthly-expense-tracker/README.md and specs/001-monthly-expense-tracker/quickstart.md
+- [x] T056 [P] Update developer onboarding and run commands in monthly-expense-tracker/README.md
+- [x] T057 Refine shared responsive layout behavior and accessibility states in monthly-expense-tracker/components/common/Navigation.tsx, monthly-expense-tracker/components/common/Sidebar.tsx, and monthly-expense-tracker/styles/globals.css
+- [x] T058 Re-run and fix lint, type-check, and formatting issues via monthly-expense-tracker/eslint.config.mjs, monthly-expense-tracker/tsconfig.json, and monthly-expense-tracker/.prettierrc.json
+- [x] T059 [P] Add regression coverage for cross-story calculations and auth edge cases in monthly-expense-tracker/__tests__/integration/dashboard.test.ts and monthly-expense-tracker/__tests__/integration/auth-flow.test.ts
+- [x] T060 Harden auth/session error handling and unauthorized states in monthly-expense-tracker/lib/auth/middleware.ts, monthly-expense-tracker/app/(auth)/error.tsx, and monthly-expense-tracker/app/(protected)/error.tsx
+- [x] T061 Run the documented quickstart validation and update any drift in monthly-expense-tracker/README.md and specs/001-monthly-expense-tracker/quickstart.md
 
 ---
 

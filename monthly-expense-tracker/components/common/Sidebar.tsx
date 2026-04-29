@@ -25,17 +25,29 @@ export function Sidebar({ isOpen, onClose, userRole }: SidebarProps) {
     <>
       {/* Mobile sidebar overlay */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 md:hidden" onClick={onClose} />
+        <button
+          type="button"
+          aria-label="Close menu overlay"
+          className="fixed inset-0 bg-black/50 md:hidden"
+          onClick={onClose}
+        />
       )}
 
       {/* Sidebar */}
       <aside
+        aria-hidden={!isOpen}
+        aria-label="Sidebar navigation"
         className={`fixed top-0 left-0 z-50 h-screen w-64 border-r border-gray-200 bg-white pt-16 shadow-sm transition-transform duration-200 md:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="p-4">
-          <button onClick={onClose} className="md:hidden mb-4 text-gray-600 hover:text-gray-900">
+          <button
+            type="button"
+            onClick={onClose}
+            className="mb-4 text-gray-600 hover:text-gray-900 md:hidden"
+            aria-label="Close menu"
+          >
             ✕
           </button>
           <nav className="space-y-2">
@@ -46,6 +58,7 @@ export function Sidebar({ isOpen, onClose, userRole }: SidebarProps) {
                   key={item.href}
                   href={item.href}
                   onClick={onClose}
+                  aria-current={active ? 'page' : undefined}
                   className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                     active
                       ? 'bg-blue-50 text-blue-700'

@@ -155,7 +155,11 @@ export function useTransactions(initialFilters: TransactionFilters = {}) {
       URL.revokeObjectURL(url);
       a.remove();
     } catch (err) {
-      throw new Error(err instanceof Error ? err.message : 'Failed to export CSV');
+      const exportError = new Error(
+        err instanceof Error ? err.message : 'Failed to export CSV'
+      ) as Error & { cause?: unknown };
+      exportError.cause = err;
+      throw exportError;
     }
   }, [queryString]);
 
