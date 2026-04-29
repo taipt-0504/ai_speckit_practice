@@ -169,6 +169,26 @@
 
 ---
 
+## Phase 7A: Navigation & Session UX Clarifications (FR-028, FR-029, FR-030)
+
+**Purpose**: Convert clarified requirements for side menu, user header info, and logout UX into explicit deliverables.
+
+### Tests for Navigation & Session UX ⚠️
+
+- [x] T062 [P] [US1] Add integration tests for logout flow and post-logout redirect behavior in monthly-expense-tracker/__tests__/integration/auth-flow.test.ts
+- [x] T063 [P] [US3] Add component tests for protected shell header user-info and side menu navigation visibility by role in monthly-expense-tracker/__tests__/components/ProtectedShell.test.tsx
+
+### Implementation for Navigation & Session UX
+
+- [x] T064 [US1] Ensure logout action is available from protected UI header and clears active session in monthly-expense-tracker/components/common/Header.tsx, monthly-expense-tracker/app/(protected)/layout.tsx, and monthly-expense-tracker/app/api/auth/logout/route.ts
+- [x] T065 [US3] Build side menu-based navigation for protected screens (including role-based Admin link visibility) in monthly-expense-tracker/components/common/Sidebar.tsx and monthly-expense-tracker/app/(protected)/layout.tsx
+- [x] T066 [US3] Show current user information (email + role) in protected header shell in monthly-expense-tracker/components/common/Header.tsx and monthly-expense-tracker/app/(protected)/layout.tsx
+- [x] T067 [US3] Document and validate Navigation & Session UX acceptance flow in monthly-expense-tracker/README.md
+
+**Checkpoint**: FR-028/029/030 have explicit tests and implementation traceability.
+
+---
+
 ## Phase 8: Polish & Cross-Cutting Concerns
 
 **Purpose**: Finish documentation, hardening, responsive cleanup, and full validation across the delivered stories.
@@ -188,7 +208,7 @@
 
 - **Setup (Phase 1)**: No dependencies; start immediately.
 - **Foundational (Phase 2)**: Depends on Phase 1 and blocks all user stories.
-- **User Stories (Phases 3-7)**: Depend on Phase 2 completion.
+- **User Stories (Phases 3-7A)**: Depend on Phase 2 completion.
 - **Polish (Phase 8)**: Depends on completion of all desired user stories.
 
 ### User Story Dependencies

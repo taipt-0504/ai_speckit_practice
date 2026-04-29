@@ -102,3 +102,19 @@ Run US5 focused tests:
 npx vitest __tests__/unit/calculations.test.ts __tests__/components/LimitForm.test.tsx __tests__/components/LimitAlerts.test.tsx __tests__/integration/spending-limit.test.ts --run
 ```
 
+## Phase 7A (Navigation & Session UX) Acceptance Flow
+
+This phase finalizes clarified UX requirements for protected screens:
+
+1. Header displays current logged-in user info (email + role).
+2. Side menu provides quick navigation to protected screens.
+3. Admin link in side menu is visible only for admin users.
+4. Logout action is available from header and ends active session.
+5. After logout, users must authenticate again before continuing protected actions.
+
+Run Phase 7A focused tests:
+
+```bash
+npx vitest __tests__/integration/auth-flow.test.ts __tests__/components/ProtectedShell.test.tsx --run
+```
+

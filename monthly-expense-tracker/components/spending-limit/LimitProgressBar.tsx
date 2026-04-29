@@ -7,11 +7,7 @@ interface LimitProgressBarProps {
 
 export function LimitProgressBar({ percentage, status }: LimitProgressBarProps) {
   const barColor =
-    status === 'exceeded'
-      ? 'bg-red-500'
-      : status === 'warning'
-        ? 'bg-yellow-400'
-        : 'bg-green-500';
+    status === 'exceeded' ? 'bg-red-500' : status === 'warning' ? 'bg-yellow-400' : 'bg-green-500';
 
   const displayPercentage = Math.min(percentage, 100);
 

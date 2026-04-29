@@ -57,9 +57,7 @@ export default function LimitsPage() {
       {error && <p className="text-sm text-red-600">{error}</p>}
       {actionError && <p className="text-sm text-red-600">{actionError}</p>}
 
-      {!loading && (
-        <LimitList limits={limits} onDelete={handleDelete} />
-      )}
+      {!loading && <LimitList limits={limits} onDelete={handleDelete} />}
     </main>
   );
 }

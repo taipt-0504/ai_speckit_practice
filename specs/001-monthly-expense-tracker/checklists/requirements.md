@@ -34,3 +34,4 @@
 - Tất cả items đều pass. Spec sẵn sàng cho `/speckit.plan`.
 - Tính năng lặp hạn mức tháng được ghi nhận rõ ràng là nằm ngoài phạm vi v1 (Assumptions).
 - Admin account creation flow (không qua đăng ký) đã được ghi vào Assumptions.
+- Đã bổ sung làm rõ phạm vi cho logout, side menu điều hướng, và header hiển thị thông tin user để tránh mơ hồ khi triển khai UI shell.

@@ -40,9 +40,7 @@ export default function DashboardPage() {
       {!loading && !error && data && (
         <>
           {/* Spending limit alerts */}
-          {data.spending_limits.length > 0 && (
-            <LimitAlerts limits={data.spending_limits} />
-          )}
+          {data.spending_limits.length > 0 && <LimitAlerts limits={data.spending_limits} />}
 
           {/* Summary cards */}
           <MonthlyOverview

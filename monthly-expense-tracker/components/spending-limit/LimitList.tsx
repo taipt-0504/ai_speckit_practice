@@ -15,7 +15,10 @@ interface SpendingLimitItem {
 interface LimitListProps {
   limits: SpendingLimitItem[];
   onDelete: (id: string) => void;
-  spentMap?: Record<string, { spent: number; percentage: number; status: 'normal' | 'warning' | 'exceeded' }>;
+  spentMap?: Record<
+    string,
+    { spent: number; percentage: number; status: 'normal' | 'warning' | 'exceeded' }
+  >;
 }
 
 function formatCurrency(amount: number): string {

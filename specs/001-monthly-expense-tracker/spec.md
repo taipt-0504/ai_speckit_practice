@@ -23,6 +23,7 @@ Người dùng mới tạo tài khoản bằng email và mật khẩu. Tài kho�
 4. **Given** quản trị viên chọn approve một yêu cầu, **When** xác nhận hành động, **Then** tài khoản chuyển sang trạng thái "active" và người dùng có thể đăng nhập.
 5. **Given** quản trị viên chọn reject một yêu cầu, **When** xác nhận hành động, **Then** tài khoản chuyển sang trạng thái "rejected" và người dùng bị từ chối đăng nhập với thông báo rõ ràng.
 6. **Given** email đã tồn tại trong hệ thống, **When** đăng ký với email đó, **Then** hệ thống báo lỗi và không tạo tài khoản trùng.
+7. **Given** người dùng đã đăng nhập, **When** chọn hành động đăng xuất, **Then** hệ thống kết thúc phiên làm việc và điều hướng về màn hình đăng nhập.
 
 ---
 
@@ -60,6 +61,8 @@ Người dùng xem dashboard tổng quan gồm: tổng thu, tổng chi, số dư
 2. **Given** dashboard đang hiển thị tháng cụ thể, **When** người dùng chọn tháng khác, **Then** tất cả số liệu và biểu đồ cập nhật theo tháng đã chọn.
 3. **Given** có giao dịch thuộc nhiều danh mục khác nhau, **When** biểu đồ phân bổ hiển thị, **Then** mỗi danh mục chiếm tỷ lệ chính xác tương ứng với tổng chi.
 4. **Given** không có giao dịch nào trong tháng, **When** truy cập dashboard tháng đó, **Then** hiển thị giá trị 0 và thông báo trống thân thiện (không bị lỗi).
+5. **Given** người dùng đang ở bất kỳ màn hình bảo vệ nào, **When** muốn chuyển màn hình chức năng, **Then** có thể dùng side menu để điều hướng nhanh đến các màn hình cần thiết.
+6. **Given** người dùng đã đăng nhập, **When** xem thanh header của khu vực bảo vệ, **Then** hệ thống hiển thị thông tin tài khoản hiện tại (ít nhất gồm email và vai trò).
 
 ---
 
@@ -142,6 +145,12 @@ Người dùng thiết lập hạn mức chi tiêu tổng cho tháng, hoặc h�
 - **FR-017**: Dashboard PHẢI hiển thị biểu đồ phân bổ chi tiêu theo danh mục trong tháng đang xem.
 - **FR-018**: Dashboard PHẢI cho phép người dùng chuyển đổi giữa các tháng để xem dữ liệu lịch sử.
 
+**Navigation & Session UX**
+
+- **FR-028**: Hệ thống PHẢI cung cấp side menu trong khu vực đăng nhập để điều hướng đến các màn hình chức năng cần thiết theo quyền truy cập của người dùng.
+- **FR-029**: Hệ thống PHẢI hiển thị thông tin người dùng đang đăng nhập trên header (ít nhất gồm email và vai trò).
+- **FR-030**: Hệ thống PHẢI cho phép người dùng đăng xuất từ giao diện chính và kết thúc phiên đăng nhập hiện tại.
+
 **Filter, Search & Export**
 
 - **FR-019**: Hệ thống PHẢI cho phép lọc giao dịch theo khoảng ngày.
@@ -185,6 +194,8 @@ Người dùng thiết lập hạn mức chi tiêu tổng cho tháng, hoặc h�
 - ~~**SC-004**: Export CSV của 500 giao dịch hoàn thành trong vòng dưới 5 giây.~~ *(Temporarily skipped — performance optimization deferred)*
 - **SC-005**: 100% luồng phê duyệt và từ chối tài khoản được tự động kiểm thử (không có lỗi regression sau thay đổi hệ thống).
 - **SC-006**: Cảnh báo vượt hạn mức hiển thị chính xác và nhất quán — không bỏ sót và không báo sai trong mọi tổ hợp giao dịch đã test.
+- **SC-007**: 100% người dùng có thể đăng xuất thành công và quay về màn hình đăng nhập trong luồng sử dụng chuẩn.
+- **SC-008**: Side menu cho phép truy cập các màn hình chính với tối đa 2 thao tác từ mọi màn hình bảo vệ.
 
 **Constitution Minimums**:
 - SC-005 và SC-006 thỏa mãn yêu cầu "ít nhất một kết quả chất lượng/phòng ngừa lỗi".

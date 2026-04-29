@@ -7,9 +7,7 @@ interface LimitAlertsProps {
 }
 
 export default function LimitAlerts({ limits }: LimitAlertsProps) {
-  const alertLimits = limits.filter(
-    (l) => l.status === 'warning' || l.status === 'exceeded'
-  );
+  const alertLimits = limits.filter((l) => l.status === 'warning' || l.status === 'exceeded');
 
   if (alertLimits.length === 0) return null;
 
@@ -21,8 +19,7 @@ export default function LimitAlerts({ limits }: LimitAlertsProps) {
             ? 'border-red-400 bg-red-50 text-red-800'
             : 'border-yellow-400 bg-yellow-50 text-yellow-800';
         const label = limit.category ? limit.category.name : 'Tổng chi tiêu tháng';
-        const statusText =
-          limit.status === 'exceeded' ? '— Vượt hạn mức!' : '— Gần đến hạn mức';
+        const statusText = limit.status === 'exceeded' ? '— Vượt hạn mức!' : '— Gần đến hạn mức';
 
         return (
           <div
